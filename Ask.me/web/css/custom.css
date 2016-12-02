@@ -1,43 +1,112 @@
-.navbar-text > a {
-	color: inherit;
-	text-decoration: none;
-}
+/*
+ * Start Bootstrap - Heroic Features (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
 
 body {
-	padding-top: 70px;
-	padding-bottom: 100px;
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-p {
-	font-family: 'Open Sans', sans-serif;
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Oswald', sans-serif;
+#top {
+    padding-left: 40px;
+    padding-right: 40px;
+    
 }
 
+.hero-spacer {
+    margin-top: 50px;
+}
 
+.hero-feature {
+    margin-bottom: 30px;
+}
 
+footer {
+    margin: 50px 0;
+}
 
+.navbar-default {
+  background-color: #2a3f4a;
+  border-color: #c3582b;
+}
 
+.navbar-inverse {
+    background-color: #2a3f4a;
+    border-color: #c3582b;
+    
+}
+.navbar-default .navbar-brand {
+  color: #dfdfdf;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-text {
+  color: #dfdfdf;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #dfdfdf;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffbbbc;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffbbbc;
+  background-color: #c3582b;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffbbbc;
+  background-color: #c3582b;
+}
+.navbar-default .navbar-toggle {
+  border-color: #c3582b;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #c3582b;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #dfdfdf;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #dfdfdf;
+}
+.navbar-default .navbar-link {
+  color: #dfdfdf;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffbbbc;
+}
 
-/*
-
-Navy Blue: #2C3E50;
-Navy Blue Active: #1A242F;
-Turquoise: #18BC9C;
-White: #FFFFFF;
-
-BTN Primary: #2C3E50
-BTN Primary Hover: #1E2A36;
-BTN Primary Hover Boarder: #161F29;
-
-BTN Success: #18BC9C;
-BTN Success Hover: #13987E;
-BTN Success Hover Boarder: #11866F;
-
-BTN Default: #95A5A6;
-BTN Default Hover: #7F9293;
-BTN Default Hover Background: #74898A;
-
-*/
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #dfdfdf;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffbbbc;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffbbbc;
+    background-color: #c3582b;
+  }
+}
