@@ -22,13 +22,79 @@ and open the template in the editor.
                 background-image: url("img/back.png");
                 background-repeat: repeat-x;
             }
+            #main {
+                padding-top: 200px;
+                padding-right: 100px;
+                padding-bottom: 300px;
+                padding-left: 100px;
+                
+            }
+            hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #ccc;
+                margin: 1em 0;
+                padding: 0; 
+            }
+            
+            footer {
+                padding-right: 50px;
+                padding-left: 50px;
+                text-align: right;
+                
+            }
+            
+            #login {
+                color: white;
+                padding-top: 5px;
+            }
+            
+            #caption {
+                color: white;
+                font-size: 11px;
+            }
+            
+            .btn {
+                padding: 8px 58px;
+                border: 0 none;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            .btn:focus, .btn:active:focus, .btn.active:focus {
+                outline: 0 none;
+            }
+
+            .btn-primary {
+                background: #e8e8e8;
+                color: #e68a00;
+            }
+
+            .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+                background: #f2f2f2;
+                color: #e68a00;
+            }
+
+            .btn-primary:active, .btn-primary.active {
+                background: #f2f2f2;
+                box-shadow: none;
+            }
+            
+            #signup {
+                color: #e68a00;
+                
+            }
         </style>
     </head>
     <body>
         <div style="text-align:center;" id="main">
-            <p><img src="img/askme-logo.png" alt="Ask.me logo"></p>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-            <p>Or, <a href="#">Log in </a></p>
+            <p><img src="img/askme-logo.png" alt="Ask.me logo">
+            </p>
+            <p id="caption">Get All of your questions answered here.</p>
+            <button id="singup" type="submit" class="btn btn-primary">Sign Up</button>
+            <p id="login">Or, <a href="#">Log in </a></p>
         </div>
         <!-- Footer -->
         <footer>
