@@ -1,4 +1,4 @@
-=<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +6,6 @@
         <title>ERROR</title>
     </head>
     <body>
-        <h1>Error Page</h1>
+        <h1>OOPS! We seem to be having some issues!</h1>
     </body>
 </html>

@@ -5,7 +5,7 @@
     
     <constant name="struts.action.excludePattern" value="/captchaImg"/>
 
-    <package name="struts2demo" extends="struts-default">  
+    <package name="action" extends="struts-default">  
             
         <default-action-ref name="NotFound"/>
         
@@ -25,12 +25,25 @@
         <action name="Sample" class="com.opensymphony.xwork2.ActionSupport">
             <result>/sample.jsp</result>
         </action>
+        
+        <action name="registration_form" class="com.opensymphony.xwork2.ActionSupport">
+            <result>/register.jsp</result>
+        </action>
+        
+        <action name="login_form" class="com.opensymphony.xwork2.ActionSupport">
+            <result>/login.jsp</result>
+        </action>
                                
         <!-- Controller Actions -->
-        <action name="SampleAction" class="action.SampleAction">
-            <result name="success">/</result>
-            <result name="input">/sample.jsp</result>
-        </action> 
+        <action name="registration" class="action.RegistrationAction">
+            <result name="success">/feed.jsp</result>
+            <result name="input">/register.jsp</result>
+        </action>
+        
+        <action name="login" class="action.LoginAction">
+             <result name="success">/feed.jsp</result>
+             <result name="input">/login.jsp</result>
+        </action>  
         
     </package>
 </struts>
