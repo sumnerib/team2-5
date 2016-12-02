@@ -33,6 +33,7 @@ public class DBMemberBean {
                     dbUrl, dbUserId, dbPassword);
             
             Statement st = con.createStatement();
+            String query = "";
 //            ResultSet rs =          
 //                    st.executeQuery("");       
 //            ResultSetMetaData md = rs.getMetaData();
