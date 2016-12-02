@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-        <title>Ask.fm | Homepage</title>
+        <title>Ask.fm | Feed</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,8 +32,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Home</a></li>       
-            <li><a href="#profile">Profile</a></li>
+            <li class="active"><a href="feed.html">Home</a></li>       
+            <li><a href="profile.html">Profile</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -54,6 +54,83 @@
             <div id="top" class="col-lg-12">
                 <h3>Top Questions</h3>
                 <hr>
+                                <!-- QUESTIONS WRAPPER START -->
+                <div class="qwt-wrapper">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            Post your question here
+                        </div>
+                        <div class="panel-body">
+                            <textarea class="form-control" placeholder="What is your question?" rows="3"></textarea>
+                            <br />
+                            <a href="#" class="btn btn-primary btn-sm pull-right">Ask</a>
+                            <div class="clearfix"></div>
+                            <hr />
+                            <ul class="media-list">
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <div class="userFeed one"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="text-muted pull-right">
+                                            <small class="text-muted">30 min ago</small>
+                                        </span>
+                                        <strong class="text-success">@ Rexona Kumi</strong>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Lorem ipsum dolor sit amet, <a href="#"># consectetur adipiscing </a>.
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            &nbsp;
+                                            <small class="text-muted"> <a href="#">2</a> Answers</small>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <div class="userFeed one"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="text-muted pull-right">
+                                            <small class="text-muted">30 min ago</small>
+                                        </span>
+                                        <strong class="text-success">@ John Doe</strong>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Lorem ipsum dolor <a href="#"># ipsum dolor </a>adipiscing elit.
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            &nbsp;
+                                            <small class="text-muted"> <a href="#">1</a> Answer</small>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <div class="userFeed one"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="text-muted pull-right">
+                                            <small class="text-muted">30 min ago</small>
+                                        </span>
+                                        <strong class="text-success">@ Madonae Jonisyi</strong>
+                                        <p>
+                                            Lorem ipsum dolor <a href="#"># sit amet</a> sit amet, consectetur adipiscing elit.
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            &nbsp;
+                                            <small class="text-muted"> <a href="#">4</a> Answers</small>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Question WRAPPER END -->
             </div>
         </div>
         <!-- /.row -->

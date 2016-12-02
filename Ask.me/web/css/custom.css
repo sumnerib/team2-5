@@ -17,6 +17,40 @@ hr {
     padding: 0; 
 }
 
+#profile {
+    padding-right: 85px;
+    
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+.user {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.userFeed {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.one {
+  background-image: url('http://placehold.it/350x150');
+}
+
 #top {
     padding-left: 40px;
     padding-right: 40px;
