@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import db.DBQueryBean;
+import db.QueryResult;
 
 /**
  *
@@ -21,8 +23,12 @@ public class LoginAction extends ActionSupport
     
     public String execute() throws Exception 
     {
-        if("admin".equals(userId) && "password".equals(passwd))
+        DBQueryBean db = new DBQueryBean();
+        
+        if(userId != null || !userId.equals(""))
         {
+            
+            
             Map session = ActionContext.getContext().getSession();
             session.put("logined", "true");
             session.put("context", new Date());
@@ -57,5 +63,15 @@ public class LoginAction extends ActionSupport
     public void setUserId(String userId)
     {
         this.userId = userId;
+    }
+    
+    /**
+     * This uses the 
+     * @param db The Database handler
+     * @return True if valid user credentials are provided false otherwise
+     */
+    private boolean verifyCred(DBQueryBean db)
+    {
+        return false;
     }
 }
