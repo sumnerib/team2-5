@@ -47,14 +47,15 @@ public class DBQueryBean {
      * @param query The SQL query
      * @return The result of the query
      */
-    public QueryResult doQuery(String query) {
+    public ResultSet doQuery(String query) {
         
         QueryResult result = new QueryResult();
         
         try {
             
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);       
+            ResultSet rs = st.executeQuery(query); 
+            /**
             ResultSetMetaData md = rs.getMetaData();
             
             // Populate the result
@@ -66,6 +67,9 @@ public class DBQueryBean {
                 for (int i = 0; i < md.getColumnCount(); i++)
                     result.addFieldValue(rs.getString(i));
             }
+            */
+            
+            return rs;
               
         } 
         catch (SQLException e) {
@@ -73,7 +77,7 @@ public class DBQueryBean {
             return null;
         }
         
-        return result;
+        
     }
     
     /**

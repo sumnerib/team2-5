@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import db.DBQueryBean;
-import db.QueryResult;
+//import db.QueryResult;
+import java.io.*;
+import java.sql.*;
 
 /**
  *
@@ -18,23 +20,42 @@ import db.QueryResult;
  */
 public class LoginAction extends ActionSupport 
 {
-    private String userId;
+    private String username;
     private String passwd;
     
-    public String execute() throws Exception 
+    public void validate() 
     {
         DBQueryBean db = new DBQueryBean();
         
-        if(userId != null || !userId.equals(""))
-        {
-            
-            
-            Map session = ActionContext.getContext().getSession();
-            session.put("logined", "true");
-            session.put("context", new Date());
-            return SUCCESS;
+        if (username == null || username.equals(""))
+            addFieldError("username", "The username cannot be blank");
+        
+        if (passwd == null || passwd.equals(""))
+            addFieldError("passwd", "The password cannot be blank");
+        
+        try {
+            if (!verifyCred(db))
+                addFieldError("pass", "Invalid username or password");
         }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
+                    
+        
+            
+        /*        
+        Map session = ActionContext.getContext().getSession();
+        session.put("logined", "true");
+        session.put("context", new Date());
+        return SUCCESS;
+            
+        
         return ERROR;
+        */
+    }
+    
+    public String execute() {
+        return SUCCESS;
     }
     
     public String logout() throws Exception
@@ -55,14 +76,14 @@ public class LoginAction extends ActionSupport
         this.passwd = passwd;
     }
     
-    public String getUserId()
+    public String getUsername()
     {
-        return userId;
+        return username;
     }
     
-    public void setUserId(String userId)
+    public void setUsername(String username)
     {
-        this.userId = userId;
+        this.username = username;
     }
     
     /**
@@ -70,8 +91,21 @@ public class LoginAction extends ActionSupport
      * @param db The Database handler
      * @return True if valid user credentials are provided false otherwise
      */
-    private boolean verifyCred(DBQueryBean db)
+    private boolean verifyCred(DBQueryBean db) throws SQLException
     {
-        return false;
+        boolean verified = false;
+        String query = "SELECT pass FROM members WHERE username = '" + username
+                + "'";
+        ResultSet result = db.doQuery(query);
+        
+        result.last();
+        if (result.getRow() == 0)
+            return false;
+        
+        result.first();
+        if (result.getString("pass").equals(passwd))
+            verified = true;
+        
+        return verified;
     }
 }
