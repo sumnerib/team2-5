@@ -21,7 +21,7 @@
             <result>/error.jsp</result>
         </action>
     
-        <!-- static link actions -->
+        <!-- static link actions 
         <action name="Sample" class="com.opensymphony.xwork2.ActionSupport">
             <result>/sample.jsp</result>
         </action>
@@ -41,8 +41,9 @@
         <action name="edit_form" class="com.opensymphony.xwork2.ActionSupport">
             <result>/edit.jsp</result>
         </action>
-                               
-        <!-- Controller Actions -->
+        -->
+                                                      
+        <!-- Controller Actions 
         <action name="registration" class="action.RegistrationAction">
             <result name="success">/feed.jsp</result>
             <result name="input">/register.jsp</result>
@@ -62,6 +63,7 @@
              <result name="success">/edit.jsp</result>
              <result name="input">/edit.jsp</result>
         </action>  
+        -->
         
     </package>
 </struts>
