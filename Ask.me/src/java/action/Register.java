@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author saudalhilali
  */
 @WebServlet(name = "Registr", urlPatterns = {"/Registr"})
-public class Registr extends HttpServlet {
+public class Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,7 +59,16 @@ public class Registr extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String month = request.getParameter("month");
+        String day = request.getParameter("day");
+        String year = request.getParameter("year");
+        String gender = request.getParameter("gender");
     }
 
     /**
