@@ -4,8 +4,7 @@
     Author     : saudalhilali
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<
 
 
 <!DOCTYPE html>
@@ -43,7 +42,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="feed.html">Home</a></li>       
-                        <li class="active"><a href="profile.html">Profile</a></li>
+                        <li class="active"><a href="#">Profile</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -61,20 +60,19 @@
         <div class="login-page">
             <div class="form">
                 <legend>Sign Up &nbsp;</legend>
-                <s:form actio="RegistrationAction" class="login-form">
+                <div class="alert alert-danger" id="errorBar"></div>
+                <form name="Register" method="post" onsubmit="validateForm()" class="login-form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <s:textfield type="text" name="firstname" value="" placeholder="First Name"  />
-                        </div>
+                            <input type="text" name="firstname" value="" placeholder="First Name"  />                        </div>
                         <div class="col-xs-6 col-md-6">
-                            <s:textfield type="text" name="lastname" value=""  placeholder="Last Name"  />
-                        </div>
+                            <input type="text" name="lastname" value=""  placeholder="Last Name"  />                        </div>
                     </div>
-                    <s:textfield type="text" name="username" value="" placeholder="Your Username"  />
-                    <s:textfield type="text" name="email" value="" placeholder="Your Email"  />
-                    <s:textfield type="password" name="password" value=""  placeholder="Password"  />
-                    <s:textfield type="password" name="confirm_password" value=""  placeholder="Confirm Password"  />
-                    <s:label>Birth Date</s:label>
+                    <input type="text" name="username" value="" placeholder="Your Username"  />
+                    <input type="text" name="email" value="" placeholder="Your Email"  />
+                    <input type="password" name="password" value=""  placeholder="Password"  />
+                    <input type="password" name="confirm_password" value=""  placeholder="Confirm Password"  onBlur="validateForm()"/>
+                    <label>Birth Date</label>
                     <div class="row">
                         <div class="col-xs-4 col-md-4">
                             <select name="month" class = "form-control input-lg">
@@ -215,7 +213,7 @@
                     <label>Gender : 
                     </label>                    
                     <label class="radio-inline">
-                        <input type="radio" name="gender" value="M" id=male />
+                        <input type="radio" name="gender" value="M" id=male checked="checked"/>
                         Male
                     </label>
                     <label class="radio-inline">
@@ -231,63 +229,72 @@
         </div>
         <!-- /.row -->
 
-        <!-- Feed content -->
-        <div class="row text-center">
 
-            <div class="col-md-3 col-sm-6 hero-feature">
+        <!-- Validation code -->
+        <script type="text/javascript">
+            function validateForm() {
+                var pass = document.getElementsByName("password");
+                var passConfirm = document.getElementsByName("confirm_password");
+                if (pass != passConfirm) 
+                {
+                    document.getElementById("errorBar").innerHTML="alert alert-danger><strong>Oh snap!</strong> Password must match.";
+                    //alert("Passwords must match");
+                    return false;
+                }
+            }
 
-            </div>
+        </script>
 
 
-            <!-- Fixed footer -->
-            <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-                <div class="container">
-                    <div class="navbar-text pull-left">
-                        <p>© 2016 Ask.me</p>
-                    </div>
+        <!-- Fixed footer -->
+        <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <div class="navbar-text pull-left">
+                    <p>© 2016 Ask.me</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Bootstrap core JavaScript
-            ================================================== -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <div class="modal fade" id="contact" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form class="form-horizontal" role="form">
-                            <div class="modal-header">
-                                <h4>Contact<h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="contact-name" class="col-sm-2 control-label">Name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="contact-name" placeholder="First & Last Name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="contact-email" class="col-sm-2 control-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="contact-message" class="col-sm-2 control-label">Message</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="4"></textarea>
-                                                </div>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <div class="modal fade" id="contact" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4>Contact<h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="contact-name" class="col-sm-2 control-label">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="contact-name" placeholder="First & Last Name">
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a class="btn btn-default" data-dismiss="modal">Close</a>
-                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        <div class="form-group">
+                                            <label for="contact-email" class="col-sm-2 control-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
+                                            </div>
                                         </div>
-                                        </form>
+                                        <div class="form-group">
+                                            <label for="contact-message" class="col-sm-2 control-label">Message</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="4"></textarea>
+                                            </div>
                                         </div>
-                                        </div>
-                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-default" data-dismiss="modal">Close</a>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </div>
+                                    </form>
+                                    </div>
+                                    </div>
+                                    </div>
 
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-                                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-                                        </body>
-                                        </html>
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                                    </body>
+                                    </html>

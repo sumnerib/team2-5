@@ -7,7 +7,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -59,19 +58,19 @@
         <!-- Page Content -->
         <div class="container">
 
-                    <!-- Profile WRAPPER START -->
-                    <div class="login-page">
-                        <div class="form">
-                            <legend>Login</legend>
-                            <form class="login-form">
-                                <input name="username" type="text" placeholder="username"/>
-                                <input name="passwd" type="password" placeholder="password"/>
-                                <button>login</button>
-                                <p class="message">Not registered? <a href="register.html">Create an account</a></p>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Profile WRAPPER END -->
+            <!-- Profile WRAPPER START -->
+            <div class="login-page">
+                <div class="form">
+                    <legend>Login</legend>
+                    <form class="login-form">
+                        <input name="username" type="text" placeholder="username"/>
+                        <input name="passwd" type="password" placeholder="password"/>
+                        <button>login</button>
+                        <p class="message">Not registered? <a href="register.html">Create an account</a></p>
+                    </form>
+                </div>
+            </div>
+            <!-- Profile WRAPPER END -->
             <!-- /.row -->
 
             <!-- Feed content -->
@@ -90,6 +89,19 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Validation code -->
+                <script type="text/javascript">
+                    function validateForm() {
+                        var x = document.forms["myForm"]["fname"].value;
+                        if (x == "") {
+                            alert("Name must be filled out");
+                            return false;
+                        }
+                    }
+
+                </script>
 
                 <!-- Bootstrap core JavaScript
                 ================================================== -->
