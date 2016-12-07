@@ -1,5 +1,15 @@
+<%-- 
+    Document   : edit
+    Created on : Dec 7, 2016, 9:18:03 AM
+    Author     : saudalhilali
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,8 +42,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="feed.html">Home</a></li>       
-            <li class="active"><a href="profile.html">Profile</a></li>
+            <li><a href="feed.jsp">Home</a></li>       
+            <li class="active"><a href="profile.jsp">Profile</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
               <ul class="dropdown-menu">

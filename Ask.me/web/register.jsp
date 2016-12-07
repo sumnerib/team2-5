@@ -1,3 +1,13 @@
+<%-- 
+    Document   : register
+    Created on : Dec 7, 2016, 9:27:29 AM
+    Author     : saudalhilali
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

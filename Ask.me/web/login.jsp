@@ -1,3 +1,13 @@
+<%-- 
+    Document   : login
+    Created on : Dec 7, 2016, 9:26:59 AM
+    Author     : saudalhilali
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,7 +42,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="feed.html">Home</a></li>       
+                        <li><a href="feed.jsp">Home</a></li>       
                         <li class="active"><a href="profile.html">Profile</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>

@@ -1,3 +1,13 @@
+<%-- 
+    Document   : profile
+    Created on : Dec 7, 2016, 9:23:07 AM
+    Author     : saudalhilali
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,8 +42,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="feed.html">Home</a></li>       
-            <li class="active"><a href="profile.html">Profile</a></li>
+            <li><a href="feed.jsp">Home</a></li>       
+            <li class="active"><a href="profile.jsp">Profile</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -58,9 +68,9 @@
                 <div id="profile" class="container">
       <div>
       <div>
-           <A href="edit.html" >Edit Profile</A>
+           <A href="edit.jsp" >Edit Profile</A>
 
-        <A href="edit.html" >Logout</A>
+        <A href="#" >Logout</A>
        <br>
       </div>
         <div >
