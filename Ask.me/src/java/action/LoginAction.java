@@ -25,6 +25,7 @@ public class LoginAction extends ActionSupport
     
     public void validate() 
     {
+        //Change this to use execute
         DBQueryBean db = new DBQueryBean();
         
         if (username == null || username.equals(""))

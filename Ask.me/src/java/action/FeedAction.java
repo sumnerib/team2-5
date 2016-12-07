@@ -9,6 +9,8 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.util.Date;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.apache.struts2.interceptor.SessionAware;
+import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import db.DBQueryBean;
@@ -33,7 +35,14 @@ public class FeedAction extends ActionSupport{
     
     public String execute() {
         DBQueryBean db = new DBQueryBean();
-        saveQuestion(db);
+        
+        try {
+            saveQuestion(db);
+        }
+        catch (SQLException sql) {
+            return ERROR;
+        }
+        
         return SUCCESS;
     }
     
@@ -48,18 +57,20 @@ public class FeedAction extends ActionSupport{
     /**
      * This method stores the question in the database
      */
-    private void saveQuestion(DBQueryBean db) {
+    private void saveQuestion(DBQueryBean db) throws SQLException {
         
+        // Get the neccessary info to build the query string
+        int qid;
         String getMax = "SELECT MAX(questionId) AS max FROM questions;";
         ResultSet result = db.doQuery(getMax);
+        Map session = (Map) ActionContext.getContext().get("session");
         
-        try {
-            int id = result.getInt("max") + 1;
-        }
-        catch (SQLException sql) {
-            sql.printStackTrace();
-        }
+        qid = result.getInt("max") + 1;
         
-        String insert = "INSERT INTO questions(question)"
+        String insert = "INSERT INTO questions(questionId, question, memberId)"
+                + " VALUES (" + qid + ", " + question + ", " 
+                + session.get("memberId") + ");";
+        
+        db.doQuery(insert);
     }
 }
