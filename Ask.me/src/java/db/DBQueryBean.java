@@ -53,8 +53,8 @@ public class DBQueryBean {
         
         try {
             
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query); 
+            PreparedStatement st = con.prepareStatement(query);
+            ResultSet rs = st.executeQuery(); 
             /**
             ResultSetMetaData md = rs.getMetaData();
             
