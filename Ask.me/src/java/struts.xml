@@ -33,6 +33,14 @@
         <action name="login_form" class="com.opensymphony.xwork2.ActionSupport">
             <result>/login.jsp</result>
         </action>
+        
+        <action name="feed_form" class="com.opensymphony.xwork2.ActionSupport">
+            <result>/feed.jsp</result>
+        </action>
+        
+        <action name="edit_form" class="com.opensymphony.xwork2.ActionSupport">
+            <result>/edit.jsp</result>
+        </action>
                                
         <!-- Controller Actions -->
         <action name="registration" class="action.RegistrationAction">
@@ -43,6 +51,16 @@
         <action name="login" class="action.LoginAction">
              <result name="success">/feed.jsp</result>
              <result name="input">/login.jsp</result>
+        </action>
+        
+        <action name="feed" class="action.FeedAction">
+             <result name="success">/feed.jsp</result>
+             <result name="input">/feed.jsp</result>
+        </action>
+        
+        <action name="edit" class="action.EditAction">
+             <result name="success">/edit.jsp</result>
+             <result name="input">/edit.jsp</result>
         </action>  
         
     </package>
