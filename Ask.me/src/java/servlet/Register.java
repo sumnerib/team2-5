@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package action;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,10 +37,10 @@ public class Register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registr</title>");            
+            out.println("<title>Servlet Register</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Registr at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
