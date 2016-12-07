@@ -25,22 +25,12 @@ public class LoginAction extends ActionSupport
     
     public void validate() 
     {
-        //Change this to use execute
-        DBQueryBean db = new DBQueryBean();
         
         if (username == null || username.equals(""))
             addFieldError("username", "The username cannot be blank");
         
         if (passwd == null || passwd.equals(""))
             addFieldError("passwd", "The password cannot be blank");
-        
-        try {
-            if (!verifyCred(db))
-                addFieldError("pass", "Invalid username or password");
-        }
-        catch (SQLException sql) {
-            sql.printStackTrace();
-        }
                     
         
             
@@ -56,6 +46,17 @@ public class LoginAction extends ActionSupport
     }
     
     public String execute() {
+        
+        DBQueryBean db = new DBQueryBean();
+        
+        try {
+            if (!verifyCred(db))
+                return INPUT;
+        }
+        catch (SQLException sql) {
+            return ERROR;
+        }
+        
         return SUCCESS;
     }
     
