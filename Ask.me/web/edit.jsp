@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -70,44 +70,44 @@
 <fieldset>
 
 
-<!-- Text input-->
+<!-- Update username-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Username</label>  
+  <label class="col-md-4 control-label" for="newUsername">Username</label>  
   <div class="col-md-4">
-  <input id="textinput" name="textinput" type="text" placeholder="Username" class="form-control input-md">
+  <input id="newUsername" name="newUsername" type="text" placeholder="New Username" class="form-control input-md">
     
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Update password-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Password</label>  
+  <label class="col-md-4 control-label" for="newPassword">Password</label>  
   <div class="col-md-4">
-  <input id="textinput" name="textinput" type="text" placeholder="Password" class="form-control input-md">
+  <input id="newPassword" name="newPassword" type="password" placeholder="New Password" class="form-control input-md">
     
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Update name-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Full Name</label>  
+  <label class="col-md-4 control-label" for="newName">Full Name</label>  
   <div class="col-md-4">
-  <input id="textinput" name="textinput" type="text" placeholder="Full Name" class="form-control input-md">
+  <input id="newName" name="newName" type="text" placeholder="Full Name" class="form-control input-md">
     
   </div>
 </div>
 
-<!-- DOB -->
+<!-- Update DOB -->
 <div class="form-group">
   <div class="col-md-4">
 <div class="control-group">
-  <label for="dob-day" class="control-label">Date of birth</label>
+  <label for="newDOBDay" class="control-label">Date of birth</label>
   <div class="controls">
       
       <div class="col-md-4">
           
       <div class="col-sm-3">
-    <select name="dob-day" id="dob-day" class="form-control">
+    <select name="newDOBDday" id="newDOBDay" class="form-control">
       <option value="">Day</option>
       <option value="">---</option>
       <option value="01">01</option>
@@ -144,7 +144,7 @@
     </select>
       </div>
           <div class="col-sm-6">
-    <select name="dob-month" id="dob-month" class="form-control">
+    <select name="newDOBMonth" id="newDOBMonth" class="form-control">
       <option value="">Month</option>
       <option value="">-----</option>
       <option value="01">January</option>
@@ -162,7 +162,7 @@
     </select>
           </div>
           <div class="col-sm-3">
-    <select name="dob-year" id="dob-year" class="form-control">
+    <select name="newDOBYear" id="newDOBYear" class="form-control">
       <option value="">Year</option>
       <option value="">----</option>
       <option value="2012">2012</option>
@@ -285,11 +285,11 @@
 </div>
             </div>
 
-<!-- Select Basic -->
+<!-- Update gender -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">Gender</label>
+  <label class="col-md-4 control-label" for="newGender">Gender</label>
   <div class="col-md-4">
-    <select id="selectbasic" name="selectbasic" class="form-control">
+    <select id="newGender" name="newGender" class="form-control">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
     </select>
@@ -297,15 +297,15 @@
 </div>
 
 
-<!-- File Button --> 
+<!-- Update photo --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="filebutton">upload photo</label>
+  <label class="col-md-4 control-label" for="newPhoto">upload photo</label>
   <div class="col-md-4">
-    <input id="filebutton" name="filebutton" class="input-file" type="file">
+    <input id="newPhoto" name="newPhoto" class="input-file" type="file">
   </div>
 </div>
 
-<!-- Button -->
+<!-- Update-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
