@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package action;
+package servlet;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import java.util.Date;

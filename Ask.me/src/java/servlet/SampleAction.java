@@ -1,4 +1,4 @@
-package action;
+package servlet;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
