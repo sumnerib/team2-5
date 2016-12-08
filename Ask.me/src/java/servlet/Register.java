@@ -27,15 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
     
-        String firstname;
-        String lastname;
-        String username;
-        String email;
-        String password;
-        String month;
-        String day;
-        String year;
-        String gender;
+        private String firstname;
+        private String lastname;
+        private String username;
+        private String email;
+        private String password;
+        private String month;
+        private String day;
+        private String year;
+        private String gender;
+        private DBQueryBean db;
 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,6 +51,9 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        db = new DBQueryBean();
+        
         firstname = request.getParameter("firstname");
         lastname = request.getParameter("lastname");
         username = request.getParameter("username");
@@ -62,26 +66,28 @@ public class Register extends HttpServlet {
         if (gender.equals("male")) gender = "m";
         else gender = "f";
         
-        try {
-            insertData();
-        } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        if (!db.checkForUsername(username)) {
+        
+            try {
+                insertData();
+            } catch (SQLException ex) {
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            forwardTo("/index.html", request, response);
         }
-            
-        forwardTo("/index.html", request, response);
+        
+        forwardTo("/register.html", request, response);
     }
     
     private void insertData() throws SQLException
     {
-        DBQueryBean db = new DBQueryBean();
+        
         int mid;
         String getMax = "SELECT MAX(memberId) AS max FROM members;";
         ResultSet result = db.doQuery(getMax);
         result.next();
         mid = result.getInt(1) + 1;
-        
-        mid = 1;
-        ArrayList<Object> list = new ArrayList<Object>();
         
         String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
                 username + "', '1999-12-12', '" + gender + "', NULL, '" + password + "');";

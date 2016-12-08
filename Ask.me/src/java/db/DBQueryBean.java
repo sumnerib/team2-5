@@ -57,13 +57,12 @@ public class DBQueryBean {
     }
     
     public void addMember(int memid, String name, String user, 
-            String dob, String gender, String img, String pass)
-    {
+            String dob, String gender, String img, String pass) {
         try {
             String insert = "INSERT INTO members(memberId, name, admin, username, "
                     + "dob, gender, image, pass) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(insert);
-            st.setInt(1, 40);
+            st.setInt(1, memid);
             st.setString(2, name);
             st.setBoolean(3, false);
             st.setString(4, user);
@@ -79,6 +78,35 @@ public class DBQueryBean {
             e.printStackTrace();
         }
         
+    }
+    
+    /**
+     * This checks if a username is in the Database
+     * 
+     * @param username The username to be checked
+     * @return true or false if the user exists
+     */
+    public boolean checkForUsername(String username) {
+        
+        int count;
+        
+        try {
+            String sql = "SELECT count(*) FROM members WHERE username = ?";
+            
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, username);
+            
+            // Get the result from counting the username tuples
+            ResultSet result = st.executeQuery();
+            result.next();
+            count = result.getInt(1);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            count = 0;
+        }
+        
+        return count > 0;
     }
     
     /**
