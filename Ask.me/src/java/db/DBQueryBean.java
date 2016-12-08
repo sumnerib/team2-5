@@ -60,9 +60,10 @@ public class DBQueryBean {
             String dob, String gender, String img, String pass)
     {
         try {
-            String insert = "INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insert = "INSERT INTO members(memberId, name, admin, username, "
+                    + "dob, gender, image, pass) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(insert);
-            st.setInt(1, memid);
+            st.setInt(1, 40);
             st.setString(2, name);
             st.setBoolean(3, false);
             st.setString(4, user);
@@ -92,8 +93,8 @@ public class DBQueryBean {
         
         try {
             
-            PreparedStatement st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery(); 
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query); 
             /**
             ResultSetMetaData md = rs.getMetaData();
             

@@ -77,8 +77,8 @@ public class Register extends HttpServlet {
         int mid;
         String getMax = "SELECT MAX(memberId) AS max FROM members;";
         ResultSet result = db.doQuery(getMax);
-        
-        mid = result.getInt("max") + 1;
+        result.next();
+        mid = result.getInt(1) + 1;
         
         mid = 1;
         ArrayList<Object> list = new ArrayList<Object>();
