@@ -7,6 +7,7 @@ package db;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * This is a bean that uses the members table
@@ -39,6 +40,44 @@ public class DBQueryBean {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void doUpdate(String command, ArrayList list)
+    {
+        try {
+            
+            PreparedStatement st = con.prepareStatement(command);
+            
+            st.executeUpdate();
+              
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void addMember(int memid, String name, String user, 
+            String dob, String gender, String img, String pass)
+    {
+        try {
+            String insert = "INSERT INTO members VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement st = con.prepareStatement(insert);
+            st.setInt(1, memid);
+            st.setString(2, name);
+            st.setBoolean(3, false);
+            st.setString(4, user);
+            st.setDate(5, java.sql.Date.valueOf(dob));
+            st.setString(6, gender);
+            st.setString(7, img);
+            st.setString(8, pass);
+            
+            st.execute();
+              
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
     
     /**

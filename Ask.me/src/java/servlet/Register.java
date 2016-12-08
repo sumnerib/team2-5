@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,10 +81,11 @@ public class Register extends HttpServlet {
         mid = result.getInt("max") + 1;
         
         mid = 1;
+        ArrayList<Object> list = new ArrayList<Object>();
         
         String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
                 username + "', '1999-12-12', '" + gender + "', NULL, '" + password + "');";
-        db.doQuery(insert);
+        db.addMember(mid,firstname+" "+lastname, username, "1999-1-1", gender, "a", password);
     }
 
     /**

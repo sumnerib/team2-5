@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
-        <title>Ask.me | Edit Profile</title>
+        <title>Ask.fm | Edit Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -97,10 +97,14 @@
 
 <!-- Update DOB -->
 <div class="form-group">
-    
-  <label for="newDOBDay" class="col-md-4 control-label">Date of birth</label>
-  
-          <div class="col-sm-1">   
+  <div class="col-md-4">
+<div class="control-group">
+  <label for="newDOBDay" class="control-label">Date of birth</label>
+  <div class="controls">
+      
+      <div class="col-md-4">
+          
+      <div class="col-sm-3">
     <select name="newDOBDday" id="newDOBDay" class="form-control">
       <option value="">Day</option>
       <option value="">---</option>
@@ -136,9 +140,8 @@
       <option value="30">30</option>
       <option value="31">31</option>
     </select>
-          </div>
-  
-          <div class="col-sm-2">
+      </div>
+          <div class="col-sm-6">
     <select name="newDOBMonth" id="newDOBMonth" class="form-control">
       <option value="">Month</option>
       <option value="">-----</option>
@@ -156,8 +159,7 @@
       <option value="12">December</option>
     </select>
           </div>
-  
-          <div class="col-sm-1">
+          <div class="col-sm-3">
     <select name="newDOBYear" id="newDOBYear" class="form-control">
       <option value="">Year</option>
       <option value="">----</option>
@@ -274,13 +276,17 @@
       <option value="1901">1901</option>
       <option value="1900">1900</option>
     </select>
-          </div>  
+          </div>
+          </div>
+  </div>
 </div>
+</div>
+            </div>
 
 <!-- Update gender -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="newGender">Gender</label>
-  <div class="col-sm-2">
+  <div class="col-md-4">
     <select id="newGender" name="newGender" class="form-control">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
@@ -291,7 +297,7 @@
 
 <!-- Update photo --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="newPhoto">Upload Photo</label>
+  <label class="col-md-4 control-label" for="newPhoto">upload photo</label>
   <div class="col-md-4">
     <input id="newPhoto" name="newPhoto" class="input-file" type="file">
   </div>

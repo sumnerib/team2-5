@@ -6,12 +6,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Validation code -->
         <script type="text/javascript">
-            var div = document.getElementById("password");
+            var div = document.getElementById("errorBar");
+            div.style.display = 'none';
+            div.disabled = true
             function validatePass() {
                 var pass = document.getElementsByName("password");
                 var passConfirm = document.getElementsByName("confirm_password");
                 if (pass != passConfirm) 
                 {
+                    
                     document.getElementById("errorBar").innerHTML="alert alert-danger><strong>Oh snap!</strong> Password must match.";
                     //alert("Passwords must match");
                     return false;
@@ -28,7 +31,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Ask.me | Sign Up</title>
+        <title>Ask.fm | Sign Up</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
