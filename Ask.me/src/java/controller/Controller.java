@@ -37,7 +37,7 @@ public class Controller extends HttpServlet{
                 forwardTo("/login.jsp", request, response);
                 break;
                 
-            case "register":
+            case "r]gegister":
                 forwardTo("/register.jsp", request, response);
                 break;
                 

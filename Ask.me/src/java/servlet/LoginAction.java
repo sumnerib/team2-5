@@ -7,8 +7,6 @@ package servlet;
 import java.util.Date;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import db.DBQueryBean;
 //import db.QueryResult;
 import java.io.*;
@@ -18,55 +16,12 @@ import java.sql.*;
  *
  * @author trippkm
  */
-public class LoginAction extends ActionSupport 
+public class LoginAction 
 {
     private String username;
     private String passwd;
     
-    public void validate() 
-    {
-        
-        if (username == null || username.equals(""))
-            addFieldError("username", "The username cannot be blank");
-        
-        if (passwd == null || passwd.equals(""))
-            addFieldError("passwd", "The password cannot be blank");
-                    
-        
-            
-        /*        
-        Map session = ActionContext.getContext().getSession();
-        session.put("logined", "true");
-        session.put("context", new Date());
-        return SUCCESS;
-            
-        
-        return ERROR;
-        */
-    }
     
-    public String execute() {
-        
-        DBQueryBean db = new DBQueryBean();
-        
-        try {
-            if (!verifyCred(db))
-                return INPUT;
-        }
-        catch (SQLException sql) {
-            return ERROR;
-        }
-        
-        return SUCCESS;
-    }
-    
-    public String logout() throws Exception
-    {
-        Map session = ActionContext.getContext().getSession();
-        session.remove("logined");
-        session.remove("context");
-        return SUCCESS;
-    }
     
     public String getPasswd()
     {

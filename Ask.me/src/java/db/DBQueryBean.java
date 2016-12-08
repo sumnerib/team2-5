@@ -18,8 +18,8 @@ public class DBQueryBean {
     
     
     private String 
-            driverClassName = "grove.cs.jmu.edu",
-            dbUrl = "jdbc:mysql://localhost:3306/team25_db",
+            driverClassName = "com.mysql.jdbc.Driver",
+            dbUrl = "jdbc:mysql://grove.cs.jmu.edu:3306/team25_db",
             dbUserId = "team25",
             dbPassword = "k!lo6";
     private Connection con;

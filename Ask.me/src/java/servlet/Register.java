@@ -5,8 +5,14 @@
  */
 package servlet;
 
+import db.DBQueryBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,34 +23,19 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author saudalhilali
  */
-@WebServlet(name = "Register", urlPatterns = {"/Register"})
+@WebServlet(name = "Register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
+    
+        String firstname;
+        String lastname;
+        String username;
+        String email;
+        String password;
+        String month;
+        String day;
+        String year;
+        String gender;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,17 +49,41 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        firstname = request.getParameter("firstname");
+        lastname = request.getParameter("lastname");
+        username = request.getParameter("username");
+        email = request.getParameter("email");
+        password = request.getParameter("password");
+        month = request.getParameter("month");
+        day = request.getParameter("day");
+        year = request.getParameter("year");
+        gender = request.getParameter("gender");
+        if (gender.equals("male")) gender = "m";
+        else gender = "f";
         
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String month = request.getParameter("month");
-        String day = request.getParameter("day");
-        String year = request.getParameter("year");
-        String gender = request.getParameter("gender");
+        try {
+            insertData();
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        forwardTo("/index.html", request, response);
+    }
+    
+    private void insertData() throws SQLException
+    {
+        DBQueryBean db = new DBQueryBean();
+        int mid;
+        String getMax = "SELECT MAX(memberId) AS max FROM members;";
+        ResultSet result = db.doQuery(getMax);
+        
+        mid = result.getInt("max") + 1;
+        
+        mid = 1;
+        
+        String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
+                username + "', '1999-12-12', '" + gender + "', NULL, '" + password + "');";
+        db.doQuery(insert);
     }
 
     /**
@@ -80,5 +95,17 @@ public class Register extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    /**
+     * Forward a request to another component.
+     * 
+     * @param url The url of the component to forward to
+     * @param request The HttpRequest object
+     * @param response The HttpResponse object
+     */
+    private void forwardTo(String url, HttpServletRequest request,
+            HttpServletResponse response) throws IOException, ServletException {
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+    }
 
 }

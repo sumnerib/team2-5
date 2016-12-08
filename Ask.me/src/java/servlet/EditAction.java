@@ -5,12 +5,11 @@
  */
 package servlet;
 
-import com.opensymphony.xwork2.ActionSupport;
 /**
  *
  * @author zometaax
  */
-public class EditAction extends ActionSupport {
+public class EditAction {
     
     private String newUsername;
     private String newPassword;
@@ -19,16 +18,7 @@ public class EditAction extends ActionSupport {
     private String newDOBMonth;
     private String newDOBYear;
     private String newGender;
-    
-    public void validate() {
-        
-        
-    }
-    
-    public String execute() {
-        
-        return SUCCESS;
-    }
+  
 
     public String getNewUsername() {
         return newUsername;

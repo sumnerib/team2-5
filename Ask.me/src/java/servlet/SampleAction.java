@@ -1,10 +1,8 @@
 package servlet;
 
-import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
-public class SampleAction extends ActionSupport implements SessionAware {
+public class SampleAction{
 
     private Map<String, Object> userSession;
 
@@ -20,17 +18,6 @@ public class SampleAction extends ActionSupport implements SessionAware {
     private String picture;
     private String thoughts;
 
-    @Override
-    public String execute() {
-        return SUCCESS;
-    }
-
-    @Override
-    public void validate() {   
-        if (name.length() == 0) {
-            addFieldError("name", "Name is required");
-        }
-    }
     public void setSession(Map<String, Object> session) {
         userSession = session;
     }
