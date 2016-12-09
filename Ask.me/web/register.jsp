@@ -35,11 +35,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Ask.me</a>
+                    <a class="navbar-brand" href="index.jsp">Ask.me</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a></li>       
+                        <li><a href="index.jsp">Home</a></li>       
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -60,14 +60,14 @@
                 <form action="register" method="POST" class="login-form" data-toggle="validator" role="form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" class="form-control" name="firstname" value="" placeholder="First Name" required/>
+                            <input type="text" name="firstname" value="" placeholder="First Name" required/>
                         </div>
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" class="form-control" name="lastname" value="" placeholder="Last Name" required/>
+                            <input type="text"  name="lastname" value="" placeholder="Last Name" required/>
                         </div>
                     </div>
-                    <input class="form-control" type="text" id="username" name="username" value="" placeholder="Your Username" required/>
-                    <input class="form-control" type="email" id="email" placeholder="Your Email" data-error="Email address is invalid" required/>
+                    <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
+                    <input  type="email" id="email" placeholder="Your Email" data-error="Email address is invalid" required/>
                     <input type="password" name="password" value="" placeholder="Password" required/>
                     <input type="password" name="confirm_password" value="" placeholder="Confirm Password" required/>
                     <label>Birth Date</label>

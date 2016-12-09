@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : Dec 9, 2016, 11:28:50 AM
+    Author     : saudalhilali
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Ask.me | Homepage</title>
@@ -73,6 +75,14 @@ and open the template in the editor.
               }
         </style>
     </head>
+    <%
+        Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
+        if (loggedIn != null && loggedIn.booleanValue()) {
+    %>
+    <jsp:forward page="feed.jsp" />
+    <%
+        }
+    %>
     <body>
         <div style="text-align:center;" id="main">
             <p><img src="img/askme-logo.png" alt="Ask.me logo">
