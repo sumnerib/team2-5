@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.DBQueryBean;
 import java.util.HashMap;
+import java.sql.*;
 
 /**
  *
@@ -58,16 +59,38 @@ public class Edit extends HttpServlet {
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
         
-        map.put("Username", newUsername);
-        map.put("Password", newPassword);
-        map.put("Name", newName);
-        map.put("DOBDay", newDOBDay);
-        map.put("DOBMonth", newDOBMonth);
-        map.put("DOBYear", newDOBYear);
-        map.put("Gender", newGender);
-        map.put("Photo", newPhoto);
+        map.put("username", newUsername);
+        map.put("pass", newPassword);
+        map.put("name", newName);
+        //map.put("dob", newDOBYear + "-" + newDOBMonth + "-" + newDOBDay);
+        map.put("dob", "1993-11-3");
+        map.put("gender", newGender);
+        map.put("image", newPhoto);
         
-        //db.editMember(map);
+        try {
+//            db.editMember(map, 
+//                    (String)request.getSession().getAttribute("userid"));
+            
+              db.editMember(map, "sumnerib");
+        }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
+        
+        forwardTo("/edit.jsp", request, response);
+    }
+    
+    /**
+     * Forward a request to another component.
+     * 
+     * @param url The url of the component to forward to
+     * @param request The HttpRequest object
+     * @param response The HttpResponse object
+     */
+    private void forwardTo(String url, HttpServletRequest request,
+            HttpServletResponse response) throws IOException, ServletException {
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+
     }
 
     /**
