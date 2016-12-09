@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Ask.me | Feed</title>
+        <title>Ask.me | Question</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,9 +27,9 @@
     <%
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         if (loggedIn == null || !loggedIn.booleanValue()) {
-            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
-            "  <strong>Oh snap!</strong> You need to be logged in to access this page." +
-            "</div>");
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>Oh snap!</strong> You need to be logged in to access this page."
+                    + "</div>");
     %>
     <jsp:forward page="login.jsp" />
     <%
@@ -70,69 +70,65 @@
             <!-- Title -->
             <div class="row">
                 <div id="top" class="col-lg-12">
-                    <h3>Top Questions</h3>
+                    ${topBar}
+                    <h3><div><div>${question}</div>
+                            <p style="font-size: 20px;">by <strong class="text" style="color: #FC6544">@${asker}
+                                </strong>
+                            </p>
+                        </div>
+                    </h3>
                     <hr>
                     <!-- QUESTIONS WRAPPER START -->
                     <div class="qwt-wrapper">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Post your question here
+                                Answers
                             </div>
                             <div class="panel-body">
-                                <!--
-                                <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
-                                <br />
-                                <a href="fd" class="btn btn-primary btn-sm center-block">Ask</a>
-                                -->
-                                <form action="feed" method="GET">
-                                  <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
-                                  &nbsp;<button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
-                                </form>
                                 <div class="clearfix"></div>
-                                <hr />
+                                <%@ page import="java.sql.*" %>
+                                <%
+                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
+                                    String query = "SELECT questionId, answer, memberId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
+                                    DBQueryBean db = new DBQueryBean();
+                                    ResultSet resultSet = db.doQuery(query);
+                                    while (resultSet.next()) {
+                                        String answer = resultSet.getString("answer");
+                                        int memberId = resultSet.getInt("memberId");
+                                        String memQuery = "SELECT username FROM members WHERE memberId = " + memberId;
+                                        ResultSet member = db.doQuery(memQuery);
+                                        member.next();
+                                        String username = member.getString(1);
+                                %>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <div class="userFeed one"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="text-muted pull-right">
+                                            <small class="text-muted">30 min ago</small>
+                                        </span>
+                                        <strong class="text" style="color: #FC6544">@<%= username%></strong>
+                                        <p>
+                                            <%= answer%>
+                                        </p>
+                                    </div>
+                                    <hr />
+                                </li>
+
+
+                                <%
+                                    }
+                                %>
                                 <ul class="media-list">
-                                    <%@ page import="java.sql.*" %>
-                                    <%
-                                        String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 5";
-                                        DBQueryBean db = new DBQueryBean();
-                                        ResultSet resultSet = db.doQuery(query);
-                                        while (resultSet.next()) {
-                                            String question = resultSet.getString("question");
-                                            String questionId = resultSet.getString("questionId");
-                                            int memberId = resultSet.getInt("memberId");
-                                            String memQuery = "SELECT username FROM members WHERE memberId = "+ memberId;
-                                            ResultSet member = db.doQuery(memQuery);
-                                            member.next();
-                                            String username = member.getString(1);
-                                            
-                                            
-                                    %>
-                                    
-                                    
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <div class="userFeed one"></div>
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text" style="color: #FC6544">@<%= username %></strong>
-                                            <p>
-                                                <%= question %>
-                                            </p>
-                                            <p>
-                                                <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right">Answer</a>
-                                                &nbsp;
-                                                <small class="text-muted"> <a href="#">2</a> Answers</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    
-                                    <%
-                                        }
-                                    %>
-                                    
+
+
+
+                                    <form action="answer?questionId=<%=questionId%>" method="POST">
+                                        <textarea class="form-control" name="yourAnswer" id="yourAnswer" placeholder="Your answer" rows="3"></textarea>
+                                        &nbsp;<button href="answer?questionId=<%=questionId%>" class="btn btn-primary btn-sm center-block">Answer</button>
+                                    </form>
+
                                 </ul>
                             </div>
                         </div>

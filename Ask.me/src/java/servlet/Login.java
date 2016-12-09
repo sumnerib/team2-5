@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
                 
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("userid", username);
-                forwardTo("/feed.jsp", request, response);
+                response.sendRedirect("feed.jsp");
             }
             else {
                 request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +

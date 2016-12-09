@@ -143,7 +143,7 @@ public class DBQueryBean {
             mid = result.getInt(1);
             
             //Add the question
-            String insert = "INSERT INTO questions(answerId, answer, memberId, "
+            String insert = "INSERT INTO answers(answerId, answer, memberId, "
                     + "questionId) VALUES (?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(insert);
             st.setInt(1, aid);
