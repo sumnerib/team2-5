@@ -35,11 +35,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">Ask.me</a>
+                    <a class="navbar-brand" href="index.jsp">Ask.me</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.html">Home</a></li>       
+                        <li><a href="index.jsp">Home</a></li>       
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">

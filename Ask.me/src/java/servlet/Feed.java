@@ -25,9 +25,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author trippkm
  */
-@WebServlet(name = "Feed", urlPatterns = {"/feed"})
+@WebServlet(name = "Feed", urlPatterns = {"/fd"})
 public class Feed extends HttpServlet {
-
+    
+    public static final Logger LOG =
+        Logger.getLogger("org.netbeans.modules.foo");
     private String yourQuestion;
     private DBQueryBean db;
 
@@ -45,19 +47,24 @@ public class Feed extends HttpServlet {
     {
          db = new DBQueryBean();
          yourQuestion = request.getParameter("yourQuestion");
-           
-         if(yourQuestion != null && !"".equals(yourQuestion))
+         LOG.log(Level.INFO, "********YOUR QUESTION " + yourQuestion + "********");
+         
+         if(yourQuestion != null && !(yourQuestion.equals("")))
          {
+             LOG.log(Level.INFO, "********SHOULD BE UPDATING DB********");
              try {
                 insertData(request.getSession());
             } catch (SQLException ex) {
-                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
              
              forwardTo("/feed.jsp", request, response);
          }
-        
-         forwardTo("/feed.jsp", request, response);
+         else {
+            LOG.log(Level.INFO, "*******NOT UPDATING DB**********");
+            forwardTo("/feed.jsp", request, response);
+         }
     }
 
     private void insertData(HttpSession session) throws SQLException

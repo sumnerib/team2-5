@@ -79,9 +79,15 @@
                                 Post your question here
                             </div>
                             <div class="panel-body">
-                                <textarea class="form-control" name="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
+                                <!--
+                                <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                                 <br />
-                                <a href="servlet/Feed" class="btn btn-primary btn-sm center-block">Ask</a>
+                                <a href="fd" class="btn btn-primary btn-sm center-block">Ask</a>
+                                -->
+                                <form action="fd" method="GET">
+                                  <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
+                                  <button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
+                                </form>
                                 <div class="clearfix"></div>
                                 <hr />
                                 <ul class="media-list">

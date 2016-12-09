@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
             
             if (db.verifyCred(username, password)) {
                 
-                session.setAttribute("loggedin", true);
+                session.setAttribute("loggedIn", true);
                 session.setAttribute("userid", username);
                 forwardTo("/feed.jsp", request, response);
             }
