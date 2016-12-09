@@ -97,14 +97,10 @@
 
 <!-- Update DOB -->
 <div class="form-group">
-  <div class="col-md-4">
-<div class="control-group">
-  <label for="newDOBDay" class="control-label">Date of birth</label>
-  <div class="controls">
-      
-      <div class="col-md-4">
-          
-      <div class="col-sm-3">
+    
+  <label for="newDOBDay" class="col-md-4 control-label">Date of birth</label>
+  
+          <div class="col-sm-1">   
     <select name="newDOBDday" id="newDOBDay" class="form-control">
       <option value="">Day</option>
       <option value="">---</option>
@@ -140,8 +136,9 @@
       <option value="30">30</option>
       <option value="31">31</option>
     </select>
-      </div>
-          <div class="col-sm-6">
+          </div>
+  
+          <div class="col-sm-2">
     <select name="newDOBMonth" id="newDOBMonth" class="form-control">
       <option value="">Month</option>
       <option value="">-----</option>
@@ -159,7 +156,8 @@
       <option value="12">December</option>
     </select>
           </div>
-          <div class="col-sm-3">
+  
+          <div class="col-sm-1">
     <select name="newDOBYear" id="newDOBYear" class="form-control">
       <option value="">Year</option>
       <option value="">----</option>
@@ -276,17 +274,13 @@
       <option value="1901">1901</option>
       <option value="1900">1900</option>
     </select>
-          </div>
-          </div>
-  </div>
+          </div>  
 </div>
-</div>
-            </div>
 
 <!-- Update gender -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="newGender">Gender</label>
-  <div class="col-md-4">
+  <div class="col-sm-2">
     <select id="newGender" name="newGender" class="form-control">
       <option value="Male">Male</option>
       <option value="Female">Female</option>
