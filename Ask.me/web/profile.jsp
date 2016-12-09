@@ -133,7 +133,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label" for="newUsername">Username</label>  
                                                         <div class="col-md-4">
-                                                            <input id="newUsername" name="newUsername" type="text" placeholder="New Username" class="form-control input-md">
+                                                            <input id="newUsername" name="newUsername" type="text" value="${userid}" class="form-control input-md">
 
                                                         </div>
                                                     </div>
@@ -143,6 +143,15 @@
                                                         <label class="col-md-4 control-label" for="newPassword">Password</label>  
                                                         <div class="col-md-4">
                                                             <input id="newPassword" name="newPassword" type="password" placeholder="New Password" class="form-control input-md">
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Update password confirm-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label" for="newPassword">Confirm Password</label>  
+                                                        <div class="col-md-4">
+                                                            <input id="conNewPassword" name="conNewPassword" type="password" placeholder="New Password" class="form-control input-md">
 
                                                         </div>
                                                     </div>
@@ -344,7 +353,7 @@
 
                                                     <!-- Update photo --> 
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="newPhoto">upload photo</label>
+                                                        <label class="col-md-4 control-label" for="newPhoto">Upload photo</label>
                                                         <div class="col-md-4">
                                                             <input id="newPhoto" name="newPhoto" class="input-file" type="file">
                                                         </div>
