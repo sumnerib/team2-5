@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author trippkm
  */
-@WebServlet(name = "Feed", urlPatterns = {"/fd"})
+@WebServlet(name = "Feed", urlPatterns = {"/feed"})
 public class Feed extends HttpServlet {
     
     public static final Logger LOG =

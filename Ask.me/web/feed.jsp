@@ -3,7 +3,7 @@
     Created on : Dec 7, 2016, 9:19:45 AM
     Author     : saudalhilali
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="db.DBQueryBean" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,13 +84,21 @@
                                 <br />
                                 <a href="fd" class="btn btn-primary btn-sm center-block">Ask</a>
                                 -->
-                                <form action="fd" method="GET">
+                                <form action="feed" method="GET">
                                   <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                                   <button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
                                 </form>
                                 <div class="clearfix"></div>
                                 <hr />
                                 <ul class="media-list">
+                                    <%
+                                        DBQueryBean db = new DBQueryBean();
+                                        for (int i = 0; i < 3; i++) {
+                                            
+                                            
+                                        }
+                                    %>
+                                    <!--
                                     <li class="media">
                                         <a href="#" class="pull-left">
                                             <div class="userFeed one"></div>
@@ -150,6 +158,7 @@
                                             </p>
                                         </div>
                                     </li>
+                                    -->
                                 </ul>
                             </div>
                         </div>
