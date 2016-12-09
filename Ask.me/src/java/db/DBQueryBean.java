@@ -122,6 +122,43 @@ public class DBQueryBean {
     }
     
     /**
+     * Adds the question to db
+     * 
+     * @param qid question id
+     * @param question the user's question
+     * @param username 
+     */
+    public void addAnswer(int aid, String answer, int qid, String username) {
+        
+        ResultSet result;
+        int mid;
+        
+        try {
+            
+            String getMemberIdString = "SELECT memberid FROM members WHERE "
+                    + "username = '" + username + "'";
+            result  = doQuery(getMemberIdString);
+            
+            result.next();
+            mid = result.getInt(1);
+            
+            //Add the question
+            String insert = "INSERT INTO questions(answerId, answer, memberId, "
+                    + "questionId) VALUES (?, ?, ?, ?)";
+            PreparedStatement st = con.prepareStatement(insert);
+            st.setInt(1, aid);
+            st.setString(2, answer);
+            st.setInt(3, mid);
+            st.setInt(4, qid);
+            
+            st.execute();
+        }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
+    }
+    
+    /**
      * This method changes the database info for a member
      * 
      * @param map The info to be changed
