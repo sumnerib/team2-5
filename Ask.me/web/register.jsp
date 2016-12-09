@@ -60,20 +60,20 @@
                 <form action="register" method="POST" class="login-form" data-toggle="validator" role="form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" class="form-control" name="firstname" value="" placeholder="First Name"  required/>
+                            <input type="text" class="form-control" name="firstname" value="" placeholder="First Name" required/>
                         </div>
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" class="form-control" name="lastname" value=""  placeholder="Last Name"  required/>
+                            <input type="text" class="form-control" name="lastname" value="" placeholder="Last Name" required/>
                         </div>
                     </div>
                     <input class="form-control" type="text" id="username" name="username" value="" placeholder="Your Username" required/>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email" data-error="Email address is invalid" required>
-                    <input class="form-control" type="password" name="password" value=""  placeholder="Password"  required/>
-                    <input class="form-control" type="password" name="confirm_password" value=""  placeholder="Confirm Password" required/>
+                    <input class="form-control" type="email" id="email" placeholder="Your Email" data-error="Email address is invalid" required/>
+                    <input type="password" name="password" value="" placeholder="Password" required/>
+                    <input type="password" name="confirm_password" value="" placeholder="Confirm Password" required/>
                     <label>Birth Date</label>
                     <div class="row">
                         <div class="col-xs-4 col-md-4">
-                            <select id="month" name="month" class = "form-control">
+                            <select id="month" name="month" class="form-control">
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -89,7 +89,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="day" name="day" class = "form-control">
+                            <select id="day" name="day" class="form-control">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -124,7 +124,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="year" name="year" class = "form-control">
+                            <select id="year" name="year" class="form-control">
                                 <option value="1935">1935</option>
                                 <option value="1936">1936</option>
                                 <option value="1937">1937</option>
