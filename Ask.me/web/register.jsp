@@ -40,7 +40,6 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="index.html">Home</a></li>       
-                        <li class="active"><a href="#" onClick="alert('Login first');">Profile</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -56,7 +55,7 @@
         <!--Profile WRAPPER END -->
         <div class="login-page">
             <div class="form">
-                <legend>Sign Up &nbsp;</legend>
+                <legend><strong>Sign Up</strong></legend>
                 <div>${errorMessage}</div>
                 <form action="register" method="POST" class="login-form" data-toggle="validator" role="form">
                     <div class="row">
@@ -74,7 +73,7 @@
                     <label>Birth Date</label>
                     <div class="row">
                         <div class="col-xs-4 col-md-4">
-                            <select id="month" name="month" class = "form-control input-lg">
+                            <select id="month" name="month" class = "form-control">
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -90,7 +89,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="day" name="day" class = "form-control input-lg">
+                            <select id="day" name="day" class = "form-control">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -125,7 +124,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="year" name="year" class = "form-control input-lg">
+                            <select id="year" name="year" class = "form-control">
                                 <option value="1935">1935</option>
                                 <option value="1936">1936</option>
                                 <option value="1937">1937</option>
@@ -208,9 +207,8 @@
                             </select>                        
                         </div>
                     </div>
-                    &nbsp;
-                    <label>Gender : 
-                    </label>                    
+                    <label>Gender</label>
+                    <div class="spacer"></div>
                     <label class="radio-inline">
                         <input type="radio" name="gender" value="M" id="male" checked="checked"/>
                         Male

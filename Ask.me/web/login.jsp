@@ -39,13 +39,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="feed.jsp">Home</a></li>       
-                        <li class="active"><a href="profile.html">Profile</a></li>
+                        <li><a href="index.html">Home</a></li>       
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                                <li><a href="#logout">Logout</a></li>
                             </ul>
                         </li>            
                     </ul>
@@ -59,13 +57,24 @@
             <!-- Profile WRAPPER START -->
             <div class="login-page">
                 <div class="form">
-                    <legend>Login</legend>
-                    <form action="login" method="POST" class="login-form">
-                        <input name="username" type="text" placeholder="username"/>
-                        <input name="password" type="password" placeholder="password"/>
+                    <legend><strong>Login</strong></legend>
+                    <form action="login" method="POST" class="login-form" data-toggle="validator" role="form">
+                        <input name="username" type="text" class="form-control" placeholder="username" required/>
+                        <input name="password" type="password" class="form-control" placeholder="password" required/>
                         <button>login</button>
-                        <p class="message">Not registered? <a href="register.html">Create an account</a></p>
-                    </form>
+                        <div class="row">
+                            <p class="message">
+                            <div class="pull-left"><p class="message">Not registered? <a href="register.jsp">Create an account</a>
+                            </p>
+                        </div>
+                            
+                        <div class="pull-right"><p class="message">Forgot password? <a href="forgot.jsp">Retrieve password</a></p>
+                        </div>
+                        </p>
+                        </div>
+                        
+                        
+                        </form>
                 </div>
             </div>
             <!-- Profile WRAPPER END -->

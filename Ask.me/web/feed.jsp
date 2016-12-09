@@ -63,14 +63,14 @@
                 <hr>
                                 <!-- QUESTIONS WRAPPER START -->
                 <div class="qwt-wrapper">
-                    <div class="panel panel-info">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             Post your question here
                         </div>
                         <div class="panel-body">
                             <textarea class="form-control" name="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                             <br />
-                            <a href="/feed" class="btn btn-primary btn-sm pull-right">Ask</a>
+                            <a href="/feed" class="btn btn-primary btn-sm center-block">Ask</a>
                             <div class="clearfix"></div>
                             <hr />
                             <ul class="media-list">
@@ -82,13 +82,13 @@
                                         <span class="text-muted pull-right">
                                             <small class="text-muted">30 min ago</small>
                                         </span>
-                                        <strong class="text-success">@ Rexona Kumi</strong>
+                                        <strong class="text" style="color: #FC6544">@ Rexona Kumi</strong>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Lorem ipsum dolor sit amet, <a href="#"># consectetur adipiscing </a>.
                                         </p>
                                         <p>
-                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            <a href="#" class="smBtn pull-right">Answer</a>
                                             &nbsp;
                                             <small class="text-muted"> <a href="#">2</a> Answers</small>
                                         </p>
@@ -102,13 +102,13 @@
                                         <span class="text-muted pull-right">
                                             <small class="text-muted">30 min ago</small>
                                         </span>
-                                        <strong class="text-success">@ John Doe</strong>
+                                        <strong class="text" style="color: #FC6544">@ John Doe</strong>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Lorem ipsum dolor <a href="#"># ipsum dolor </a>adipiscing elit.
                                         </p>
                                         <p>
-                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            <a href="#" class="smBtn pull-right">Answer</a>
                                             &nbsp;
                                             <small class="text-muted"> <a href="#">1</a> Answer</small>
                                         </p>
@@ -122,12 +122,12 @@
                                         <span class="text-muted pull-right">
                                             <small class="text-muted">30 min ago</small>
                                         </span>
-                                        <strong class="text-success">@ Madonae Jonisyi</strong>
+                                        <strong class="text" style="color: #FC6544">@ Madonae Jonisyi</strong>
                                         <p>
                                             Lorem ipsum dolor <a href="#"># sit amet</a> sit amet, consectetur adipiscing elit.
                                         </p>
                                         <p>
-                                            <a href="#" class="btn btn-primary btn-sm pull-right">Answer</a>
+                                            <a href="#" class="smBtn pull-right">Answer</a>
                                             &nbsp;
                                             <small class="text-muted"> <a href="#">4</a> Answers</small>
                                         </p>
