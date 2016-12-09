@@ -73,7 +73,9 @@
                             <div id="profile" class="tab-pane fade in active">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" style="text-align: center;">Saud Alhelali</h3>
+                                        <h3 class="panel-title" style="text-align: center;">
+                                            ${userid}
+                                        </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div>
@@ -115,7 +117,9 @@
                             <div id="edit" class="tab-pane fade">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" style="text-align: center;">Saud Alhelali</h3>
+                                        <h3 class="panel-title" style="text-align: center;">
+                                            ${userid}
+                                        </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div id='profile' class="panel">
