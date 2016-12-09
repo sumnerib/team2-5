@@ -68,7 +68,7 @@
                             Post your question here
                         </div>
                         <div class="panel-body">
-                            <textarea class="form-control" placeholder="What is your question?" rows="3"></textarea>
+                            <textarea class="form-control" name="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                             <br />
                             <a href="#" class="btn btn-primary btn-sm pull-right">Ask</a>
                             <div class="clearfix"></div>
