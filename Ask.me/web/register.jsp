@@ -4,25 +4,6 @@
     Author     : saudalhilali
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-- Validation code -->
-        <script type="text/javascript">
-            var div = document.getElementById("errorBar");
-            div.style.display = 'none';
-            div.disabled = true
-            function validatePass() {
-                var pass = document.getElementsByName("password");
-                var passConfirm = document.getElementsByName("confirm_password");
-                if (pass != passConfirm) 
-                {
-                    
-                    document.getElementById("errorBar").innerHTML="alert alert-danger><strong>Oh snap!</strong> Password must match.";
-                    //alert("Passwords must match");
-                    return false;
-                }
-            }
-
-        </script>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Ask.fm | Sign Up</title>
+        <title>Ask.me | Sign Up</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -58,13 +39,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="feed.html">Home</a></li>       
-                        <li class="active"><a href="#">Profile</a></li>
+                        <li><a href="index.html">Home</a></li>       
+                        <li class="active"><a href="#" onClick="alert('Login first');">Profile</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                                <li><a href="#logout">Logout</a></li>
                             </ul>
                         </li>            
                     </ul>
@@ -77,22 +57,24 @@
         <div class="login-page">
             <div class="form">
                 <legend>Sign Up &nbsp;</legend>
-                <div class="alert alert-danger" id="errorBar"></div>
-                <form action="register" method="POST" class="login-form">
+                <div>${errorMessage}</div>
+                <form action="register" method="POST" class="login-form" data-toggle="validator" role="form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" name="firstname" value="" placeholder="First Name"  />                        </div>
+                            <input type="text" class="form-control" name="firstname" value="" placeholder="First Name"  required/>
+                        </div>
                         <div class="col-xs-6 col-md-6">
-                            <input type="text" name="lastname" value=""  placeholder="Last Name"  />                        </div>
+                            <input type="text" class="form-control" name="lastname" value=""  placeholder="Last Name"  required/>
+                        </div>
                     </div>
-                    <input type="text" name="username" value="" placeholder="Your Username"  />
-                    <input type="text" name="email" value="" placeholder="Your Email"  />
-                    <input type="password" name="password" value=""  placeholder="Password"  />
-                    <input type="password" name="confirm_password" value=""  placeholder="Confirm Password"  />
+                    <input class="form-control" type="text" id="username" name="username" value="" placeholder="Your Username" required/>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email" data-error="Email address is invalid" required>
+                    <input class="form-control" type="password" name="password" value=""  placeholder="Password"  required/>
+                    <input class="form-control" type="password" name="confirm_password" value=""  placeholder="Confirm Password" required/>
                     <label>Birth Date</label>
                     <div class="row">
                         <div class="col-xs-4 col-md-4">
-                            <select name="month" class = "form-control input-lg">
+                            <select id="month" name="month" class = "form-control input-lg">
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -108,7 +90,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select name="day" class = "form-control input-lg">
+                            <select id="day" name="day" class = "form-control input-lg">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -143,7 +125,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select name="year" class = "form-control input-lg">
+                            <select id="year" name="year" class = "form-control input-lg">
                                 <option value="1935">1935</option>
                                 <option value="1936">1936</option>
                                 <option value="1937">1937</option>

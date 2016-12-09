@@ -8,6 +8,7 @@ package servlet;
 import db.DBQueryBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,9 +33,8 @@ public class Register extends HttpServlet {
         private String username;
         private String email;
         private String password;
-        private String month;
-        private String day;
-        private String year;
+        private String confirmPassword;
+        private String dob;
         private String gender;
         private DBQueryBean db;
 
@@ -59,12 +59,26 @@ public class Register extends HttpServlet {
         username = request.getParameter("username");
         email = request.getParameter("email");
         password = request.getParameter("password");
-        month = request.getParameter("month");
-        day = request.getParameter("day");
-        year = request.getParameter("year");
+        confirmPassword = request.getParameter("confirm_password");
+        dob = request.getParameter("year")+"-"+request.getParameter("month")+"-"+request.getParameter("day");
         gender = request.getParameter("gender");
-        if (gender.equals("male")) gender = "m";
+        
+        if (gender.equals("M")) gender = "m";
         else gender = "f";
+        
+        if (db.checkForUsername(username)) {
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
+            "  <strong>Oh snap!</strong> Username already exists." +
+            "</div>");
+            forwardTo("/register.jsp", request, response);
+        }
+        
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
+            "  <strong>Oh snap!</strong> Password must match." +
+            "</div>");
+            forwardTo("/register.jsp", request, response);
+        }
         
         if (!db.checkForUsername(username)) {
         
@@ -75,9 +89,9 @@ public class Register extends HttpServlet {
             }
 
             forwardTo("/index.html", request, response);
-        }
+        } 
         
-        forwardTo("/register.html", request, response);
+        
     }
     
     private void insertData() throws SQLException
@@ -91,7 +105,7 @@ public class Register extends HttpServlet {
         
         String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
                 username + "', '1999-12-12', '" + gender + "', NULL, '" + password + "');";
-        db.addMember(mid,firstname+" "+lastname, username, "1999-1-1", gender, "a", password);
+        db.addMember(mid,firstname+" "+lastname, username, dob, gender, "a", password);
     }
 
     /**
