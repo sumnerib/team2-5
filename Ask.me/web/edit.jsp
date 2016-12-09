@@ -63,7 +63,7 @@
                 <h3>Edit profile</h3>
                 <hr>
                 <!-- Edit Profile WRAPPER START -->
-                <div id='profile' class="container">
+                <div id='profile' class="container panel">
 <form class="form-horizontal" action="edit" method="POST">
 <fieldset>
 
