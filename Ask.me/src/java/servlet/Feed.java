@@ -32,7 +32,7 @@ public class Feed extends HttpServlet {
     private DBQueryBean db;
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -40,7 +40,7 @@ public class Feed extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
          db = new DBQueryBean();

@@ -59,19 +59,25 @@ public class Edit extends HttpServlet {
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
         
-        map.put("username", "sumnerib");
-        map.put("pass", "password");
-        map.put("name", "Isaac B Sumner");
-        //map.put("dob", newDOBYear + "-" + newDOBMonth + "-" + newDOBDay);
-        map.put("dob", "1993-11-3");
+        map.put("username", newUsername);
+        map.put("pass", newPassword);
+        map.put("name", newName);
+        //map.put("dob", "1993-11-3");
         map.put("gender", "m");
         map.put("image", "b");
         
-        try {
-//            db.editMember(map, 
-//                    (String)request.getSession().getAttribute("userid"));
+        if ((newDOBYear != null && !newDOBYear.equals("")) 
+             && (newDOBMonth != null && !newDOBMonth.equals("")) 
+             && (newDOBDay != null && !newDOBDay.equals(""))) { 
             
-              db.editMember(map, "sumnerib");
+            map.put("dob", newDOBYear + "-" + newDOBMonth + "-" + newDOBDay);
+        }
+        
+        try {
+            db.editMember(map, 
+                    (String)request.getSession().getAttribute("userid"));
+            
+              //db.editMember(map, "sumnerib");
         }
         catch (SQLException sql) {
             sql.printStackTrace();

@@ -70,7 +70,7 @@
                         <div class="panel-body">
                             <textarea class="form-control" name="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                             <br />
-                            <a href="/feed" class="btn btn-primary btn-sm center-block">Ask</a>
+                            <a href="servlet/Feed" class="btn btn-primary btn-sm center-block">Ask</a>
                             <div class="clearfix"></div>
                             <hr />
                             <ul class="media-list">

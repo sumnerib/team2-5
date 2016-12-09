@@ -152,7 +152,7 @@ public class DBQueryBean {
         // Some values would be ints in sql so we use parseInt()
         for (int i = 0; i < values.size(); i++) {
             
-            System.out.println("Value " + i + " " + values.get(i));
+            //System.out.println("Value " + i + " " + values.get(i));
            
             try {
                 st.setDate(i + 1, java.sql.Date.valueOf(values.get(i)));
