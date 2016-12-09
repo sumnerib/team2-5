@@ -8,6 +8,10 @@ package db;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * This is a bean that uses the members table
@@ -78,6 +82,84 @@ public class DBQueryBean {
             e.printStackTrace();
         }
         
+    }
+    
+    /**
+     * Adds the question to db
+     * 
+     * @param qid question id
+     * @param question the user's question
+     * @param username 
+     */
+    public void addQuestion(int qid, String question, String username) {
+        
+        ResultSet result;
+        int mid;
+        
+        try {
+            
+            String getMemberIdString = "SELECT memberid FROM members WHERE "
+                    + "username = " + username;
+            result  = doQuery(getMemberIdString);
+            
+            result.next();
+            mid = result.getInt(1);
+            
+            //Add the question
+            String insert = "INSERT INTO questions(questionId, question, memberId) "
+                    + "VALUES (?, ?, ?)";
+            PreparedStatement st = con.prepareStatement(insert);
+            st.setInt(1, qid);
+            st.setString(2, question);
+            st.setInt(3, mid);
+            
+            st.execute();
+        }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
+    }
+    
+    /**
+     * This method changes the database info for a member
+     * 
+     * @param map The info to be changed
+     */
+    public void editMember(HashMap map, String username) throws SQLException{
+        
+        ArrayList<String> values = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder("UPDATE members SET ");
+        Iterator it = map.entrySet().iterator();
+        
+        // Iterate the map of values and build the query string
+        while (it.hasNext()) {
+            
+            Map.Entry pair = (Map.Entry)it.next();
+            
+            if (pair.getValue() != null && !(((String)pair.getValue()).equals(""))) {
+                
+                sb.append(pair.getKey() + " = ?, ");
+                values.add((String)pair.getValue());
+            }
+        }
+        
+        //******NEED TO FIX SO IT USES DATE VALUE*********
+        
+        String query = sb.substring(0, sb.length() - 2) + " WHERE username = ?";
+        PreparedStatement st = con.prepareStatement(query);
+        
+        // Some values would be ints in sql so we use parseInt()
+        for (int i = 0; i < values.size(); i++) {
+            
+            try {
+                st.setInt(i, Integer.parseInt(values.get(i)));
+            }
+            catch (NumberFormatException nfe) {
+                st.setString(i + 1, values.get(i)); 
+            }
+        }
+        
+        st.execute();
     }
     
     /**
