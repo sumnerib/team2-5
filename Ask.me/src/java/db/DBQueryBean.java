@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Map;
+import java.lang.IllegalArgumentException;
 
 /**
  * This is a bean that uses the members table
@@ -135,30 +136,33 @@ public class DBQueryBean {
         while (it.hasNext()) {
             
             Map.Entry pair = (Map.Entry)it.next();
+            String value = (String)pair.getValue();
             
-            if (pair.getValue() != null && !(((String)pair.getValue()).equals(""))) {
+            if (value != null && !value.equals("")) {
                 
                 sb.append(pair.getKey() + " = ?, ");
                 values.add((String)pair.getValue());
             }
         }
         
-        //******NEED TO FIX SO IT USES DATE VALUE*********
-        
+       
         String query = sb.substring(0, sb.length() - 2) + " WHERE username = ?";
         PreparedStatement st = con.prepareStatement(query);
         
         // Some values would be ints in sql so we use parseInt()
         for (int i = 0; i < values.size(); i++) {
             
+            System.out.println("Value " + i + " " + values.get(i));
+           
             try {
-                st.setInt(i, Integer.parseInt(values.get(i)));
+                st.setDate(i + 1, java.sql.Date.valueOf(values.get(i)));
             }
-            catch (NumberFormatException nfe) {
+            catch (IllegalArgumentException iae) {
                 st.setString(i + 1, values.get(i)); 
             }
         }
         
+        st.setString(values.size() + 1, username);
         st.execute();
     }
     
