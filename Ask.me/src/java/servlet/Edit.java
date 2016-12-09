@@ -67,7 +67,7 @@ public class Edit extends HttpServlet {
         map.put("Gender", newGender);
         map.put("Photo", newPhoto);
         
-        db.editMember(map);
+        //db.editMember(map);
     }
 
     /**
