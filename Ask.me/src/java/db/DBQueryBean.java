@@ -110,6 +110,32 @@ public class DBQueryBean {
     }
     
     /**
+     * This uses the 
+     * @param db The Database handler
+     * @return True if valid user credentials are provided false otherwise
+     */
+    public boolean verifyCred(String username, String pass) throws SQLException {
+        boolean verified = false;
+        String query = "SELECT pass FROM members WHERE username = ?";
+        PreparedStatement st = con.prepareStatement(query);
+        st.setString(1, username);
+        
+        // Get the result from counting the username tuples
+        ResultSet result = st.executeQuery();
+        result.next();
+        
+        result.last();
+        if (result.getRow() == 0)
+            return false;
+        
+        result.first();
+        if (result.getString(1).trim().equals(pass.trim()))
+            verified = true;
+        
+        return verified;
+    }
+    
+    /**
      * This populates a QueryResult with the data returned from the given query
      * 
      * @param query The SQL query

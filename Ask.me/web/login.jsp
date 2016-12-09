@@ -60,9 +60,9 @@
             <div class="login-page">
                 <div class="form">
                     <legend>Login</legend>
-                    <form class="login-form">
+                    <form action="login" method="POST" class="login-form">
                         <input name="username" type="text" placeholder="username"/>
-                        <input name="passwd" type="password" placeholder="password"/>
+                        <input name="password" type="password" placeholder="password"/>
                         <button>login</button>
                         <p class="message">Not registered? <a href="register.html">Create an account</a></p>
                     </form>
