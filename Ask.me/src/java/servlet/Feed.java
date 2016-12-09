@@ -59,7 +59,7 @@ public class Feed extends HttpServlet {
                 ex.printStackTrace();
             }
              
-             forwardTo("/feed.jsp", request, response);
+             response.sendRedirect("/Ask.me/feed.jsp");
          }
          else {
             LOG.log(Level.INFO, "*******NOT UPDATING DB**********");

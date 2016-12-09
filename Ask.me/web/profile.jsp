@@ -57,7 +57,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                                <li><a href="#logout">Logout</a></li>
+                                <li><a href="logout">Logout</a></li>
                             </ul>
                         </li>            
                     </ul>

@@ -91,14 +91,23 @@
                                 <div class="clearfix"></div>
                                 <hr />
                                 <ul class="media-list">
+                                    <%@ page import="java.sql.*" %>
                                     <%
+                                        String query = "SELECT question, memberId FROM questions ORDER BY questionId DESC limit 5";
                                         DBQueryBean db = new DBQueryBean();
-                                        for (int i = 0; i < 3; i++) {
+                                        ResultSet resultSet = db.doQuery(query);
+                                        while (resultSet.next()) {
+                                            String question = resultSet.getString("question");
+                                            int memberId = resultSet.getInt("memberId");
+                                            String memQuery = "SELECT username FROM members WHERE memberId = "+ memberId;
+                                            ResultSet member = db.doQuery(memQuery);
+                                            member.next();
+                                            String username = member.getString(1);
                                             
                                             
-                                        }
                                     %>
-                                    <!--
+                                    
+                                    
                                     <li class="media">
                                         <a href="#" class="pull-left">
                                             <div class="userFeed one"></div>
@@ -107,10 +116,9 @@
                                             <span class="text-muted pull-right">
                                                 <small class="text-muted">30 min ago</small>
                                             </span>
-                                            <strong class="text" style="color: #FC6544">@ Rexona Kumi</strong>
+                                            <strong class="text" style="color: #FC6544">@<%= username %></strong>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Lorem ipsum dolor sit amet, <a href="#"># consectetur adipiscing </a>.
+                                                <%= question %>
                                             </p>
                                             <p>
                                                 <a href="#" class="smBtn pull-right">Answer</a>
@@ -119,46 +127,11 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <div class="userFeed one"></div>
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text" style="color: #FC6544">@ John Doe</strong>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Lorem ipsum dolor <a href="#"># ipsum dolor </a>adipiscing elit.
-                                            </p>
-                                            <p>
-                                                <a href="#" class="smBtn pull-right">Answer</a>
-                                                &nbsp;
-                                                <small class="text-muted"> <a href="#">1</a> Answer</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <div class="userFeed one"></div>
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text" style="color: #FC6544">@ Madonae Jonisyi</strong>
-                                            <p>
-                                                Lorem ipsum dolor <a href="#"># sit amet</a> sit amet, consectetur adipiscing elit.
-                                            </p>
-                                            <p>
-                                                <a href="#" class="smBtn pull-right">Answer</a>
-                                                &nbsp;
-                                                <small class="text-muted"> <a href="#">4</a> Answers</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    -->
+                                    
+                                    <%
+                                        }
+                                    %>
+                                    
                                 </ul>
                             </div>
                         </div>
