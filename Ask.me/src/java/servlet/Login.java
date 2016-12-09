@@ -55,7 +55,9 @@ public class Login extends HttpServlet {
                 forwardTo("/feed.jsp", request, response);
             }
             else {
-                request.setAttribute("errorMessage", "Invalid username or password");
+                request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
+            "  <strong>Oh snap!</strong> Invalid username or password." +
+            "</div>");
                 forwardTo("/login.jsp", request, response);
             }
         }

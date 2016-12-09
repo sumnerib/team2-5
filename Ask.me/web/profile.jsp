@@ -74,7 +74,7 @@
                             <div >
 
 
-                                <div class="panel panel-info">
+                                <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Saud Alhelali</h3>
                                     </div>

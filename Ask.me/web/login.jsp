@@ -59,6 +59,7 @@
                 <div class="form">
                     <legend><strong>Login</strong></legend>
                     <form action="login" method="POST" class="login-form" data-toggle="validator" role="form">
+                        <div>${errorMessage}</div>
                         <input name="username" type="text" class="form-control" placeholder="username" required/>
                         <input name="password" type="password" class="form-control" placeholder="password" required/>
                         <button>login</button>
