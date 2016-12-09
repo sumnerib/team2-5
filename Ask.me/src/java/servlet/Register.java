@@ -88,7 +88,7 @@ public class Register extends HttpServlet {
                 Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            forwardTo("/index.html", request, response);
+            forwardTo("/index.jsp", request, response);
         } 
         
         

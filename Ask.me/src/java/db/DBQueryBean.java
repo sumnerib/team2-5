@@ -100,7 +100,7 @@ public class DBQueryBean {
         try {
             
             String getMemberIdString = "SELECT memberid FROM members WHERE "
-                    + "username = " + username;
+                    + "username = '" + username + "'";
             result  = doQuery(getMemberIdString);
             
             result.next();
