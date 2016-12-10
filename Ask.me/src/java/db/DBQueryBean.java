@@ -276,19 +276,6 @@ public class DBQueryBean {
             
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query); 
-            /**
-            ResultSetMetaData md = rs.getMetaData();
-            
-            // Populate the result
-            for (int i = 0; i < md.getColumnCount(); i++)
-                result.addColumnName(md.getColumnName(i));
-            
-            while (rs.next()) {
-                
-                for (int i = 0; i < md.getColumnCount(); i++)
-                    result.addFieldValue(rs.getString(i));
-            }
-            */
             
             return rs;
               
@@ -299,6 +286,25 @@ public class DBQueryBean {
         }
         
         
+    }
+    
+    /**
+     * Updates the password 
+     * 
+     * @param password 
+     */
+    public void updatePassword(String username, String password) {
+        
+        String update = "UPDATE members SET password = ? WHERE username = ?";
+        
+        try {
+            PreparedStatement st = con.prepareStatement(update);
+            st.setString(1, hashPassword(password));
+            st.setString(2, username);
+        }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
     }
     
      /**
