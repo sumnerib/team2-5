@@ -301,6 +301,8 @@ public class DBQueryBean {
             PreparedStatement st = con.prepareStatement(update);
             st.setString(1, hashPassword(password));
             st.setString(2, username);
+            
+            st.executeQuery();
         }
         catch (SQLException sql) {
             sql.printStackTrace();
