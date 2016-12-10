@@ -200,7 +200,7 @@
                                                         </div>
                                                         
                                                         <div class="col-xs-4 col-md-2">   
-                                                            <select name="newDOBDday" id="newDOBDay" class="form-control">
+                                                            <select name="newDOBday" id="newDOBDay" class="form-control">
                                                                 <option value="">Day</option>
                                                                 <option value="">---</option>
                                                                 <option value="01">01</option>

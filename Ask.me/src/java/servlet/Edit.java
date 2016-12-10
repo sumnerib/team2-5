@@ -63,7 +63,7 @@ public class Edit extends HttpServlet {
         map.put("pass", newPassword);
         map.put("name", newName);
         //map.put("dob", "1993-11-3");
-        map.put("gender", "m");
+        map.put("gender", newGender.substring(0, 1));
         map.put("image", "b");
 
         if ((newDOBYear != null && !newDOBYear.equals(""))

@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
         username = request.getParameter("username");
         password = request.getParameter("password");
         
-        password = hashPassword(password);
+        //password = hashPassword(password);
         
         try {
             
