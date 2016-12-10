@@ -51,13 +51,13 @@ public class DBQueryBean {
         }
     }
     
-    public void doUpdate(String command, ArrayList list)
+    public void doUpdate(String command)
     {
         try {
             
-            PreparedStatement st = con.prepareStatement(command);
+            Statement st = con.createStatement();
             
-            st.executeUpdate();
+            st.executeUpdate(command);
               
         } 
         catch (SQLException e) {
@@ -304,6 +304,8 @@ public class DBQueryBean {
             PreparedStatement st = con.prepareStatement(update);
             st.setString(1, hashPassword(password));
             st.setString(2, username);
+            
+            st.executeQuery();
         }
         catch (SQLException sql) {
             sql.printStackTrace();
