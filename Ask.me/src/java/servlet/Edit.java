@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import db.DBQueryBean;
 import java.util.HashMap;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static servlet.Feed.LOG;
 
 /**
  *
@@ -33,6 +36,8 @@ public class Edit extends HttpServlet {
     private String newDOBYear;
     private String newGender;
     private String newPhoto;
+    public static final Logger LOG
+            = Logger.getLogger("org.netbeans.modules.foo");
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -58,14 +63,16 @@ public class Edit extends HttpServlet {
         newDOBYear = request.getParameter("newDOBYear");
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
-
+        
         map.put("username", newUsername);
         map.put("pass", newPassword);
         map.put("name", newName);
-        //map.put("dob", "1993-11-3");
+        //map.put("dob", "2012-12-21");
         map.put("gender", newGender.substring(0, 1));
         map.put("image", "b");
-
+        
+        LOG.log(Level.INFO, "********YOUR DOB " + newDOBYear + "-" + newDOBMonth + "-" + newDOBDay + "********");
+        
         if ((newDOBYear != null && !newDOBYear.equals(""))
                 && (newDOBMonth != null && !newDOBMonth.equals(""))
                 && (newDOBDay != null && !newDOBDay.equals(""))) {

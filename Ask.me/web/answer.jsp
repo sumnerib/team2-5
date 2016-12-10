@@ -101,7 +101,7 @@
                                         String username = member.getString(1);
                                 %>
                                 <li class="media">
-                                    <a href="/<%=username%>" class="pull-left">
+                                    <a href="/Ask.me/<%=username%>" class="pull-left">
                                         <div class="userFeed one"></div>
                                     </a>
                                     <div class="media-body">
