@@ -3,7 +3,7 @@
     Created on : Dec 7, 2016, 9:23:07 AM
     Author     : saudalhilali
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="db.DBQueryBean"%>
 
 
 <!DOCTYPE html>
@@ -25,15 +25,27 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     </head>
+    <%@ page import="java.sql.*" %>
     <%
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         if (loggedIn == null || !loggedIn.booleanValue()) {
-            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
-            "  <strong>Oh snap!</strong> You need to be logged in to access this page." +
-            "</div>");
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>Oh snap!</strong> You need to be logged in to access this page."
+                    + "</div>");
     %>
     <jsp:forward page="login.jsp" />
+    <%! String name, gender, image;
+        Date date;%> 
     <%
+        }
+        String query = "SELECT name, dob, gender, image FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        DBQueryBean db = new DBQueryBean();
+        ResultSet resultSet = db.doQuery(query);
+        while (resultSet.next()) {
+            name = resultSet.getString("name");
+            date = resultSet.getDate("dob");
+            gender = resultSet.getString("gender");
+            image = resultSet.getString("image");
         }
     %>
     <body>
@@ -71,6 +83,7 @@
             <!-- Title -->
             <div class="row">
                 <div id="top" class="col-lg-12">
+                    ${topBar}
                     <h3>Profile</h3>
                     <hr>
                     <!-- Profile WRAPPER START -->
@@ -85,7 +98,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title" style="text-align: center;">
-                                            ${userid}
+                                            Hello, <% out.print(name);%>!
                                         </h3>
                                     </div>
                                     <div class="panel-body">
@@ -102,12 +115,19 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>Date of Birth</td>
-                                                                <td>01/24/1994</td>
+                                                                <td><% out.print(date.toString());%></td>
                                                             </tr>
                                                             <tr>
                                                             <tr>
                                                                 <td>Gender</td>
+                                                                <% if (gender.equalsIgnoreCase("m")) {%>
                                                                 <td>Male</td>
+                                                                <% } else {
+                                                                %>
+                                                                <td>Female</td>
+                                                                <%
+                                                                    }
+                                                                %>
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
@@ -129,17 +149,22 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title" style="text-align: center;">
-                                            ${userid}
+                                            Here you can edit your profile.
                                         </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div id='profile' class="panel">
                                             <form class="form-horizontal" action="edit" method="POST">
                                                 <fieldset>
-                                                    
-                                                    
+                                                    <!-- Update full name-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label" for="newName">Full Name</label>  
+                                                        <div class="col-md-4">
+                                                            <input id="newName" name="newName" type="text" value="<%=name%>"< class="form-control input-md">
 
-
+                                                        </div>
+                                                    </div>
+                                                            
                                                     <!-- Update username-->
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label" for="newUsername">Username</label>  
@@ -157,7 +182,7 @@
 
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <!-- Update password confirm-->
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label" for="newPassword">Confirm Password</label>  
@@ -170,9 +195,10 @@
 
                                                     <!-- Update DOB -->
                                                     <div class="form-group">
-
+                                                        <div>
                                                         <label for="newDOBDay" class="col-md-4 control-label">Date of birth</label>
-
+                                                        </div>
+                                                        
                                                         <div class="col-xs-4 col-md-2">   
                                                             <select name="newDOBDday" id="newDOBDay" class="form-control">
                                                                 <option value="">Day</option>
@@ -352,7 +378,9 @@
 
                                                     <!-- Update gender -->
                                                     <div class="form-group">
+                                                        <div>
                                                         <label class="col-md-4 control-label" for="newGender">Gender</label>
+                                                        </div>
                                                         <div class="col-sm-2">
                                                             <select id="newGender" name="newGender" class="form-control">
                                                                 <option value="Male">Male</option>

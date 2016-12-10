@@ -52,7 +52,10 @@ public class Login extends HttpServlet {
                 
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("userid", username);
-                response.sendRedirect("feed.jsp");
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Welcome!</strong> Glad you are back."
+                        + "</div>");
+                forwardTo("/feed.jsp", request, response);
             }
             else {
                 request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +

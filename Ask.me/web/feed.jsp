@@ -70,7 +70,8 @@
             <!-- Title -->
             <div class="row">
                 <div id="top" class="col-lg-12">
-                    <h3>Top Questions</h3>
+                    ${topBar}
+                    <h3>Questions</h3>
                     <hr>
                     <!-- QUESTIONS WRAPPER START -->
                     <div class="qwt-wrapper">
@@ -104,8 +105,6 @@
                                             ResultSet member = db.doQuery(memQuery);
                                             member.next();
                                             String username = member.getString(1);
-                                            
-                                            
                                     %>
                                     
                                     

@@ -24,7 +24,7 @@ import java.sql.*;
 public class Edit extends HttpServlet {
 
     private DBQueryBean db;
-    
+
     private String newUsername;
     private String newPassword;
     private String newName;
@@ -45,11 +45,11 @@ public class Edit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HashMap<String, String> map = new HashMap();
-        
+
         db = new DBQueryBean();
-        
+
         newUsername = request.getParameter("newUsername");
         newPassword = request.getParameter("newPassword");
         newName = request.getParameter("newName");
@@ -58,37 +58,42 @@ public class Edit extends HttpServlet {
         newDOBYear = request.getParameter("newDOBYear");
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
-        
+
         map.put("username", newUsername);
         map.put("pass", newPassword);
         map.put("name", newName);
         //map.put("dob", "1993-11-3");
         map.put("gender", "m");
         map.put("image", "b");
-        
-        if ((newDOBYear != null && !newDOBYear.equals("")) 
-             && (newDOBMonth != null && !newDOBMonth.equals("")) 
-             && (newDOBDay != null && !newDOBDay.equals(""))) { 
-            
+
+        if ((newDOBYear != null && !newDOBYear.equals(""))
+                && (newDOBMonth != null && !newDOBMonth.equals(""))
+                && (newDOBDay != null && !newDOBDay.equals(""))) {
+
             map.put("dob", newDOBYear + "-" + newDOBMonth + "-" + newDOBDay);
         }
-        
+
         try {
-            db.editMember(map, 
-                    (String)request.getSession().getAttribute("userid"));
-            
-              //db.editMember(map, "sumnerib");
-        }
-        catch (SQLException sql) {
+            db.editMember(map,
+                    (String) request.getSession().getAttribute("userid"));
+
+            request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                    + "  <strongYes!</strong> Your new changes have been updated."
+                    + "</div>");
+            //db.editMember(map, "sumnerib");
+        } catch (SQLException sql) {
+            request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>No!</strong> Something wrong went."
+                    + "</div>");
             sql.printStackTrace();
         }
-        
+
         forwardTo("/profile.jsp", request, response);
     }
-    
+
     /**
      * Forward a request to another component.
-     * 
+     *
      * @param url The url of the component to forward to
      * @param request The HttpRequest object
      * @param response The HttpResponse object

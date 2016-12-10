@@ -27,9 +27,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Feed", urlPatterns = {"/feed"})
 public class Feed extends HttpServlet {
-    
-    public static final Logger LOG =
-        Logger.getLogger("org.netbeans.modules.foo");
+
+    public static final Logger LOG
+            = Logger.getLogger("org.netbeans.modules.foo");
     private String yourQuestion;
     private DBQueryBean db;
 
@@ -43,46 +43,49 @@ public class Feed extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-         db = new DBQueryBean();
-         yourQuestion = request.getParameter("yourQuestion");
-         LOG.log(Level.INFO, "********YOUR QUESTION " + yourQuestion + "********");
-         
-         if(yourQuestion != null && !(yourQuestion.equals("")))
-         {
-             LOG.log(Level.INFO, "********SHOULD BE UPDATING DB********");
-             try {
+            throws ServletException, IOException {
+        db = new DBQueryBean();
+        yourQuestion = request.getParameter("yourQuestion");
+        LOG.log(Level.INFO, "********YOUR QUESTION " + yourQuestion + "********");
+
+        if (yourQuestion != null && !(yourQuestion.equals(""))) {
+            LOG.log(Level.INFO, "********SHOULD BE UPDATING DB********");
+            try {
                 insertData(request.getSession());
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Yes!</strong> Your question has been posted."
+                        + "</div>");
             } catch (SQLException ex) {
                 //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
             }
-             
-             response.sendRedirect("/Ask.me/feed.jsp");
-         }
-         else {
-            LOG.log(Level.INFO, "*******NOT UPDATING DB**********");
+
             forwardTo("/feed.jsp", request, response);
-         }
+        } else {
+            LOG.log(Level.INFO, "*******NOT UPDATING DB**********");
+            request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                        + "  <strong>No!</strong> Something wrong went."
+                        + "</div>");
+            forwardTo("/feed.jsp", request, response);
+        }
     }
 
-    private void insertData(HttpSession session) throws SQLException
-    {       
+    private void insertData(HttpSession session) throws SQLException {
         int qid;
         String getMax = "SELECT MAX(questionId) AS max FROM questions;";
         ResultSet result = db.doQuery(getMax);
         result.next();
         qid = result.getInt(1) + 1;
-        
-        db.addQuestion(qid, yourQuestion, (String)session.getAttribute("userid"));
+
+        db.addQuestion(qid, yourQuestion, (String) session.getAttribute("userid"));
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
-      private void forwardTo(String url, HttpServletRequest request,
+    private void forwardTo(String url, HttpServletRequest request,
             HttpServletResponse response) throws IOException, ServletException {
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }

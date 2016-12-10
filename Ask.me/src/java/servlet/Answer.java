@@ -93,7 +93,7 @@ public class Answer extends HttpServlet {
             db.addAnswer(aid, answer, questionId,
                     (String) request.getSession().getAttribute("userid"));
             request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n" +
-            "  <strong>Yes!</strong> Your answer have been posted." +
+            "  <strong>Yes!</strong> Your answer has been posted." +
             "</div>");
             forwardTo("/answer.jsp", request, response);
         } catch (SQLException sql) {
