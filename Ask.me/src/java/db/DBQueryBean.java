@@ -13,6 +13,9 @@ import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Map;
 import java.lang.IllegalArgumentException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This is a bean that uses the members table
@@ -296,6 +299,27 @@ public class DBQueryBean {
         }
         
         
+    }
+    
+     /**
+     * One-way hash on password (code by PROF GROVE, Lab 11)
+     * 
+     * @param password
+     * @return String of hexadecimal chars representing hash value
+     */
+    public static String hashPassword(String password) {
+        String digest;
+        try {
+            MessageDigest md = MessageDigest.getInstance("md5");
+            md.reset();
+            byte[] bytes = md.digest(password.getBytes());
+            digest = new BigInteger(1, bytes).toString(16);
+        }
+        catch (NoSuchAlgorithmException nsae) {
+            nsae.printStackTrace();
+            digest = null;
+        }
+        return digest;
     }
     
     /**
