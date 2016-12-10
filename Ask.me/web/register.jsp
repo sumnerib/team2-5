@@ -207,6 +207,19 @@
                             </select>                        
                         </div>
                     </div>
+                    <label>Security Question</label>
+                    <div class="row">
+                        <div style="margin-left: 16px; margin-right: 16px">
+                            <select id="secQuestion" name="secQuestion" class="form-control">
+                                <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                                <option value="What is your favorite team?">What is your favorite team?</option>
+                                <option value="What is your favorite movie?">What is your favorite movie?</option>
+                                <option value="What was the make of your first car?">What was the make of your first car?</option>
+                                <option value="Who is your childhood sports hero?">Who is your childhood sports hero?</option>
+                            </select>                           
+                        </div>
+                    </div>
+                    <input type="text" id="secAnswer" name="secAnswer" value="" placeholder="Your Answer" required/>
                     <label>Gender</label>
                     <div class="spacer"></div>
                     <label class="radio-inline">

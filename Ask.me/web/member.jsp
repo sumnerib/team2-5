@@ -27,6 +27,8 @@
     </head>
     <%@ page import="java.sql.*" %>
     <%
+        String username = (String) session.getAttribute("memberProfile");
+        String loggedInUsername = (String) session.getAttribute("userid");
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         if (loggedIn == null || !loggedIn.booleanValue()) {
             request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
@@ -37,6 +39,10 @@
     <%! String name, gender, image;
         Date date;%> 
     %>
+    <%
+    } else if (username.equalsIgnoreCase(loggedInUsername)) {
+    %>
+    <jsp:forward page="profile.jsp" />
     <%
         }
         String query = "SELECT name, dob, gender, image FROM members WHERE username = '" + session.getAttribute("memberProfile") + "'";
@@ -89,11 +95,6 @@
                     <hr>
                     <!-- Profile WRAPPER START -->
                     <div class="container">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-                            <li><a data-toggle="tab" href="#edit">Edit Profile</a></li>
-                        </ul>
-
                         <div class="tab-content">
                             <div id="profile" class="tab-pane fade in active">
                                 <div class="panel panel-default">

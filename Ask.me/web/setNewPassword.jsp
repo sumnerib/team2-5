@@ -24,6 +24,17 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     </head>
+    <%
+        Boolean loggedIn = (Boolean) session.getAttribute("formPass");
+        if (loggedIn == null || !loggedIn.booleanValue()) {
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>Oh snap!</strong> You need to fill this page first."
+                    + "</div>");
+    %>
+    <jsp:forward page="forgot.jsp" />
+    <%
+        }
+    %>
     <body>
         <!-- Fixed navbar -->
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -58,7 +69,7 @@
                 <legend><strong>Forgot Password? </strong></legend>
                 <div>${errorMessage}</div>
                 <span class="help-block">In order to update your password. You need to fill out this form</span>
-                    
+
                 <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
 
                 <label>Your Security Question</label>

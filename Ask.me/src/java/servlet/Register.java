@@ -36,6 +36,8 @@ public class Register extends HttpServlet {
         private String confirmPassword;
         private String dob;
         private String gender;
+        private String secQuestion;
+        private String secAnswer;
         private DBQueryBean db;
 
 
@@ -62,6 +64,8 @@ public class Register extends HttpServlet {
         confirmPassword = request.getParameter("confirm_password");
         dob = request.getParameter("year")+"-"+request.getParameter("month")+"-"+request.getParameter("day");
         gender = request.getParameter("gender");
+        gender = request.getParameter("secQuestion");
+        gender = request.getParameter("secAnswer");
         
         if (gender.equals("M")) gender = "m";
         else gender = "f";
