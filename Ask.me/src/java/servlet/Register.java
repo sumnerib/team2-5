@@ -64,8 +64,8 @@ public class Register extends HttpServlet {
         confirmPassword = request.getParameter("confirm_password");
         dob = request.getParameter("year")+"-"+request.getParameter("month")+"-"+request.getParameter("day");
         gender = request.getParameter("gender");
-        gender = request.getParameter("secQuestion");
-        gender = request.getParameter("secAnswer");
+        secQuestion = request.getParameter("secQuestion");
+        secAnswer = request.getParameter("secAnswer");
         
         if (gender.equals("M")) gender = "m";
         else gender = "f";
@@ -109,8 +109,9 @@ public class Register extends HttpServlet {
         mid = result.getInt(1) + 1;
         
         String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
-                username + "', '1999-12-12', '" + gender + "', NULL, '" + password + "');";
-        db.addMember(mid,firstname+" "+lastname, username, dob, gender, "a", password);
+                username + "', '"+ dob +"', '" + gender + "', NULL, '" + password + "', '" +
+                email +"', '"+ secQuestion +"', '"+secAnswer +"');";
+        db.addMember(mid,firstname+" "+lastname, username, dob, gender, "a", password, email, secQuestion, secAnswer);
     }
 
     /**

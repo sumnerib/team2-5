@@ -35,6 +35,25 @@
     <%
         }
     %>
+    <jsp:useBean id="db" class="db.DBQueryBean" /> 
+    <script type="text/javascript">
+
+        function checkUpdate() {
+            var pass = document.getElementById("newPassword").value;
+            var conPass = document.getElementById("newPassword").value;
+            var ok = true;
+            if (pass1 != pass2) {
+                document.getElementById("pass1").style.borderColor = "#E34234";
+                document.getElementById("pass2").style.borderColor = "#E34234";
+                ok = false;
+            }
+            else {
+                alert("Passwords Match!!!");
+            }
+            return ok;
+
+        }
+    </script>
     <body>
         <!-- Fixed navbar -->
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -66,27 +85,26 @@
         <!--Profile WRAPPER END -->
         <div class="login-page">
             <div class="form">
-                <legend><strong>Forgot Password? </strong></legend>
+                <legend><strong>Update Password </strong></legend>
                 <div>${errorMessage}</div>
-                <span class="help-block">In order to update your password. You need to fill out this form</span>
+                <form action="forgot" method="GET" class="login-form" onsubmit="return checkUpdate()" data-toggle="validator" role="form">
+                    <!-- Update password-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="newPassword">New Password</label>  
+                        <div class="col-md-4">
+                            <input id="newPassword" name="newPassword" type="password" placeholder="New Password" class="form-control input-md">
 
-                <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
-
-                <label>Your Security Question</label>
-                <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
-                    <div class="row">
-                        <div style="margin-left: 16px; margin-right: 16px">
-                            <select id="secQuestion" name="secQuestion" class="form-control">
-                                <option value="What was your childhood nickname?">What was your childhood nickname?</option>
-                                <option value="What is your favorite team?">What is your favorite team?</option>
-                                <option value="What is your favorite movie?">What is your favorite movie?</option>
-                                <option value="What was the make of your first car?">What was the make of your first car?</option>
-                                <option value="Who is your childhood sports hero?">Who is your childhood sports hero?</option>
-                            </select>                           
                         </div>
                     </div>
-                    <input type="text" id="secAnswer" name="secAnswer" value="" placeholder="Your Answer" required/>
 
+                    <!-- Update password confirm-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="newPassword">Confirm New Password</label>  
+                        <div class="col-md-4">
+                            <input id="conNewPassword" name="conNewPassword" type="password" placeholder="New Password" class="form-control input-md">
+
+                        </div>
+                    </div>
                     <button type="submit">Update my password</button>
                 </form>
             </div>

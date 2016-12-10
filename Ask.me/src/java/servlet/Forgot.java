@@ -28,6 +28,7 @@ public class Forgot extends HttpServlet {
     private DBQueryBean db;
     private String username;
     private String newPassword;
+    private String newConPassword;
     private String secQuestion;
     private String secAnswer;
 
@@ -51,28 +52,59 @@ public class Forgot extends HttpServlet {
         secQuestion = request.getParameter("secQuestion");
         secAnswer = request.getParameter("secAnswer");
         HttpSession session = request.getSession();
-        
-        String query = "SELECT secQuestion, secAnswer FROM members WHERE username = '"+username+"'";
+
+        String query = "SELECT secQuestion, secAnswer FROM members WHERE username = '" + username + "'";
 
         try {
             ResultSet result = db.doQuery(query);
             result.next();
-            if (result.getString("secQuestion").equalsIgnoreCase(secQuestion) &&
-                    result.getString("secAnswer").equalsIgnoreCase(secAnswer)) {
-            request.setAttribute("errorMessage", "<div class=\"alert alert-success\" role=\"alert\">\n"
-                    + "  <strongYes!</strong> Now you can update your password."
-                    + "</div>");
+            if (result.getString("secQuestion").equalsIgnoreCase(secQuestion)
+                    && result.getString("secAnswer").equalsIgnoreCase(secAnswer)) {
+                request.setAttribute("errorMessage", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strongYes!</strong> Now you can update your password."
+                        + "</div>");
                 session.setAttribute("formPass", true);
                 forwardTo("/setNewPassword.jsp", request, response);
+            } else {
+                request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                        + "  <strong>No!</strong> Your question or answer is wrong."
+                        + "</div>");
             }
         } catch (SQLException sql) {
             request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "  <strong>No!</strong> Your question or answer is wrong."
+                    + "  <strong>No!</strong> Yoursss question or answer is wrong."
                     + "</div>");
             sql.printStackTrace();
         }
 
-        forwardTo("/setNewPassword.jsp", request, response);
+        forwardTo("/forgot.jsp", request, response);
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        DBQueryBean db = new DBQueryBean();
+
+        newPassword = request.getParameter("newPassword");
+        newConPassword = request.getParameter("newConPassword");
+
+        if (!newPassword.equals(newConPassword)) {
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strongSnap!</strong> Your new password must match."
+                    + "</div>");
+            forwardTo("/setNewPassword.jsp", request, response);
+
+        }
     }
 
     /**

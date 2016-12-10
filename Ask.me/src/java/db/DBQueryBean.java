@@ -66,10 +66,10 @@ public class DBQueryBean {
     }
     
     public void addMember(int memid, String name, String user, 
-            String dob, String gender, String img, String pass) {
+            String dob, String gender, String img, String pass, String email, String secQuestion, String secAnswer) {
         try {
             String insert = "INSERT INTO members(memberId, name, admin, username, "
-                    + "dob, gender, image, pass) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "dob, gender, image, pass, email, secQuestion, secAnswer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(insert);
             st.setInt(1, memid);
             st.setString(2, name);
@@ -79,6 +79,9 @@ public class DBQueryBean {
             st.setString(6, gender);
             st.setString(7, img);
             st.setString(8, pass);
+            st.setString(9, email);
+            st.setString(10, secQuestion);
+            st.setString(11, secAnswer);
             
             st.execute();
               

@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
-                    <input  type="email" id="email" placeholder="Your Email" data-error="Email address is invalid" required/>
+                    <input  type="email" id="email" name="email" placeholder="Your Email" data-error="Email address is invalid" required/>
                     <input type="password" name="password" value="" placeholder="Password" required/>
                     <input type="password" name="confirm_password" value="" placeholder="Confirm Password" required/>
                     <label>Birth Date</label>

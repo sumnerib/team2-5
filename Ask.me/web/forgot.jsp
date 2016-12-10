@@ -58,11 +58,12 @@
                 <legend><strong>Forgot Password? </strong></legend>
                 <div>${errorMessage}</div>
                 <span class="help-block">In order to update your password. You need to fill out this form</span>
-                    
+                
+                <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
+                        
                 <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
 
                 <label>Your Security Question</label>
-                <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
                     <div class="row">
                         <div style="margin-left: 16px; margin-right: 16px">
                             <select id="secQuestion" name="secQuestion" class="form-control">
