@@ -83,6 +83,7 @@ public class Register extends HttpServlet {
         if (!db.checkForUsername(username)) {
         
             try {
+                password = db.hashPassword(password);
                 insertData();
             } catch (SQLException ex) {
                 Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);

@@ -49,8 +49,6 @@ public class Login extends HttpServlet {
         username = request.getParameter("username");
         password = request.getParameter("password");
         
-        //password = hashPassword(password);
-        
         try {
             
             if (db.verifyCred(username, password)) {
@@ -72,27 +70,6 @@ public class Login extends HttpServlet {
         catch(SQLException sql) {
             sql.printStackTrace();
         }
-    }
-    
-    /**
-     * One-way hash on password (code by PROF GROVE, Lab 11)
-     * 
-     * @param password
-     * @return String of hexadecimal chars representing hash value
-     */
-    private static String hashPassword(String password) {
-        String digest;
-        try {
-            MessageDigest md = MessageDigest.getInstance("md5");
-            md.reset();
-            byte[] bytes = md.digest(password.getBytes());
-            digest = new BigInteger(1, bytes).toString(16);
-        }
-        catch (NoSuchAlgorithmException nsae) {
-            nsae.printStackTrace();
-            digest = null;
-        }
-        return digest;
     }
     
     /**
