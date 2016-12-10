@@ -52,10 +52,10 @@ public class Forgot extends HttpServlet {
         secQuestion = request.getParameter("secQuestion");
         secAnswer = request.getParameter("secAnswer");
         HttpSession session = request.getSession();
+        ;
 
         switch (request.getParameter("type")) {
             case "checkQA": {
-
                 String query = "SELECT secQuestion, secAnswer FROM members WHERE username = '" + username + "'";
 
                 try {
@@ -67,11 +67,13 @@ public class Forgot extends HttpServlet {
                                 + "  <strongYes!</strong> Now you can update your password."
                                 + "</div>");
                         session.setAttribute("formPass", true);
+                        session.setAttribute("username", username);
                         forwardTo("/setNewPassword.jsp", request, response);
                     } else {
                         request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
                                 + "  <strong>No!</strong> Your question or answer is wrong."
                                 + "</div>");
+                        forwardTo("/forgot.jsp", request, response);
                     }
                 } catch (SQLException sql) {
                     request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
@@ -96,7 +98,7 @@ public class Forgot extends HttpServlet {
                     forwardTo("/setNewPassword.jsp", request, response);
 
                 } else {
-                    db.updatePassword(username, newPassword);
+                    db.updatePassword((String)session.getAttribute("username"), newPassword);
                     request.setAttribute("errorMessage", "<div class=\"alert alert-success\" role=\"alert\">\n"
                             + "  <strongYes!</strong> Your new password has been updated. Log in now."
                             + "</div>");
