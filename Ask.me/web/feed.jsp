@@ -27,9 +27,9 @@
     <%
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         if (loggedIn == null || !loggedIn.booleanValue()) {
-            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n" +
-            "  <strong>Oh snap!</strong> You need to be logged in to access this page." +
-            "</div>");
+            request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>Oh snap!</strong> You need to be logged in to access this page."
+                    + "</div>");
     %>
     <jsp:forward page="login.jsp" />
     <%
@@ -86,8 +86,8 @@
                                 <a href="fd" class="btn btn-primary btn-sm center-block">Ask</a>
                                 -->
                                 <form action="feed" method="GET">
-                                  <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
-                                  &nbsp;<button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
+                                    <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
+                                    &nbsp;<button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
                                 </form>
                                 <div class="clearfix"></div>
                                 <hr />
@@ -101,37 +101,45 @@
                                             String question = resultSet.getString("question");
                                             String questionId = resultSet.getString("questionId");
                                             int memberId = resultSet.getInt("memberId");
-                                            String memQuery = "SELECT username FROM members WHERE memberId = "+ memberId;
+                                            String memQuery = "SELECT username FROM members WHERE memberId = " + memberId;
                                             ResultSet member = db.doQuery(memQuery);
                                             member.next();
                                             String username = member.getString(1);
                                     %>
-                                    
-                                    
+
+
                                     <li class="media">
                                         <a href="/Ask.me/<%=username%>" class="pull-left">
                                             <div class="userFeed one"></div>
                                         </a>
                                         <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text" style="color: #FC6544">@<%= username %></strong>
+                                            <a href="/Ask.me/<%=username%>">
+                                                <strong class="text" style="color: #FC6544">@<%= username%></strong>
+                                            </a>
                                             <p>
-                                                <%= question %>
+                                                <%= question%>
                                             </p>
                                             <p>
                                                 <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right">Answer</a>
                                                 &nbsp;
-                                                <small class="text-muted"> <a href="#">2</a> Answers</small>
+                                                <%! int answerNum = 0;%>
+                                                <%
+                                                    query = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
+                                                    db = new DBQueryBean();
+                                                    ResultSet rs = db.doQuery(query);
+                                                    while (rs.next()) {
+                                                        answerNum = rs.getInt(1);
+                                                    }
+                                                %>
+                                                <small class="text-muted"> <a href="/Ask.me/answer?questionId=<%=questionId%>"><%= answerNum %></a> Answers</small>
                                             </p>
                                         </div>
                                     </li>
-                                    
+
                                     <%
                                         }
                                     %>
-                                    
+
                                 </ul>
                             </div>
                         </div>

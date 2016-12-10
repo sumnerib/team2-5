@@ -36,7 +36,7 @@
                     + "</div>");
     %>
     <jsp:forward page="login.jsp" />
-    <%! String name, gender, image;
+    <%! String name, gender, image, email;
         Date date;%> 
     %>
     <%
@@ -53,6 +53,7 @@
             date = resultSet.getDate("dob");
             gender = resultSet.getString("gender");
             image = resultSet.getString("image");
+            email = resultSet.getString("email");
         }
     %>
     <body>
@@ -116,6 +117,10 @@
                                                     <table class="table table-user-information">
                                                         <tbody>
                                                             <tr>
+                                                                <td>Username:</td>
+                                                                <td>@<%=session.getAttribute("userid")%> </td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td>Date of Birth</td>
                                                                 <td><% out.print(date.toString());%></td>
                                                             </tr>
@@ -133,7 +138,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                                                <td><a href="mailto:<%=email%>"><%= email %></a></td>
                                                             </tr>
 
 

@@ -96,6 +96,7 @@ public class Answer extends HttpServlet {
             "  <strong>Yes!</strong> Your answer has been posted." +
             "</div>");
             forwardTo("/answer.jsp", request, response);
+            response.sendRedirect("/Ask.me/answer.jsp");
         } catch (SQLException sql) {
             sql.printStackTrace();
         }

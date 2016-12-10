@@ -34,11 +34,11 @@
                     + "</div>");
     %>
     <jsp:forward page="login.jsp" />
-    <%! String name, gender, image;
+    <%! String name, gender, image, email;
         Date date;%> 
     <%
         }
-        String query = "SELECT name, dob, gender, image FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        String query = "SELECT name, dob, gender, image, email FROM members WHERE username = '" + session.getAttribute("userid") + "'";
         DBQueryBean db = new DBQueryBean();
         ResultSet resultSet = db.doQuery(query);
         while (resultSet.next()) {
@@ -46,6 +46,7 @@
             date = resultSet.getDate("dob");
             gender = resultSet.getString("gender");
             image = resultSet.getString("image");
+            email = resultSet.getString("email");
         }
     %>
     <body>
@@ -113,6 +114,10 @@
                                                     </div>
                                                     <table class="table table-user-information">
                                                         <tbody>
+                                                             <tr>
+                                                                <td>Username:</td>
+                                                                <td>@<%=session.getAttribute("userid")%> </td>
+                                                            </tr>
                                                             <tr>
                                                                 <td>Date of Birth</td>
                                                                 <td><% out.print(date.toString());%></td>
@@ -131,7 +136,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                                                <td><a href="mailto:<%=email%>"><%= email %></a></td>
                                                             </tr>
 
 

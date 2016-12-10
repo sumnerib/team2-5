@@ -59,8 +59,7 @@ public class Feed extends HttpServlet {
                 //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
             }
-
-            forwardTo("/feed.jsp", request, response);
+            response.sendRedirect("/Ask.me/feed.jsp");
         } else {
             LOG.log(Level.INFO, "*******NOT UPDATING DB**********");
             request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"

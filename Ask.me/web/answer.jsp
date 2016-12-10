@@ -104,12 +104,9 @@
                                     <a href="/Ask.me/<%=username%>" class="pull-left">
                                         <div class="userFeed one"></div>
                                     </a>
-                                    <div class="media-body">
-                                        <span class="text-muted pull-right">
-                                            <small class="text-muted">30 min ago</small>
-                                        </span>
-                                        <strong class="text" style="color: #FC6544">@<%= username%></strong>
-                                        <p>
+                                    <div class="media-body"><a href="/Ask.me/<%=username%>">
+                                            <strong class="text" style="color: #FC6544">@<%= username %></strong>
+                                             </a><p>
                                             <%= answer%>
                                         </p>
                                     </div>
