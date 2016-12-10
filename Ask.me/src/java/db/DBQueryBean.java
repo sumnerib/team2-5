@@ -298,14 +298,14 @@ public class DBQueryBean {
      */
     public void updatePassword(String username, String password) {
         
-        String update = "UPDATE members SET password = ? WHERE username = ?";
+        String update = "UPDATE members SET pass = ? WHERE username = ?";
         
         try {
             PreparedStatement st = con.prepareStatement(update);
             st.setString(1, hashPassword(password));
             st.setString(2, username);
             
-            st.executeQuery();
+            st.executeUpdate();
         }
         catch (SQLException sql) {
             sql.printStackTrace();

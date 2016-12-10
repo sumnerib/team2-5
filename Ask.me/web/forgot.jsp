@@ -60,6 +60,7 @@
                 <span class="help-block">In order to update your password. You need to fill out this form</span>
                 
                 <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
+                    <input name="type" value="checkQA" type="hidden"></input>
                         
                 <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
 

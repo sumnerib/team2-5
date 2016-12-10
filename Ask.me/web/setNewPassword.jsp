@@ -87,7 +87,8 @@
             <div class="form">
                 <legend><strong>Update Password </strong></legend>
                 <div>${errorMessage}</div>
-                <form action="forgot" method="GET" class="login-form" onsubmit="return checkUpdate()" data-toggle="validator" role="form">
+                <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
+                    <input type="hidden" name="type" value="updatePass"></input>
                     <!-- Update password-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="newPassword">New Password</label>  
