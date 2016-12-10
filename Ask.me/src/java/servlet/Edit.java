@@ -56,7 +56,7 @@ public class Edit extends HttpServlet {
         db = new DBQueryBean();
 
         newUsername = request.getParameter("newUsername");
-        newPassword = request.getParameter("newPassword");
+        newPassword = db.hashPassword(request.getParameter("newPassword"));
         newName = request.getParameter("newName");
         newDOBDay = request.getParameter("newDOBDay");
         newDOBMonth = request.getParameter("newDOBMonth");

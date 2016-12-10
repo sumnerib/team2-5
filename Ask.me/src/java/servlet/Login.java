@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
         
         try {
             
-            if (db.verifyCred(username, password)) {
+            if (db.verifyCred(username, db.hashPassword(password))) {
                 
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("userid", username);
