@@ -109,7 +109,7 @@
                                     
                                     
                                     <li class="media">
-                                        <a href="#" class="pull-left">
+                                        <a href="/<%=username%>" class="pull-left">
                                             <div class="userFeed one"></div>
                                         </a>
                                         <div class="media-body">
