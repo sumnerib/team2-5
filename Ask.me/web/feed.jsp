@@ -90,19 +90,13 @@
                                 <ul class="media-list">
                                     <%@ page import="java.sql.*" %>
                                     <%
-                                        Boolean admin = false;
-                                        String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
-                                        DBQueryBean db = new DBQueryBean();
-                                        ResultSet adminSet = db.doQuery(adminQuery);
-                                        while (adminSet.next()) {
-                                            admin = adminSet.getBoolean("admin");
-                                        }
+                                        Boolean admin = (Boolean)session.getAttribute("admin");
                                         String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 5";
-                                        db = new DBQueryBean();
+                                        DBQueryBean db = new DBQueryBean();
                                         ResultSet resultSet = db.doQuery(query);
                                         while (resultSet.next()) {
                                             String question = resultSet.getString("question");
-                                            String questionId = resultSet.getString("questionId");
+                                            int questionId = resultSet.getInt("questionId");
                                             int memberId = resultSet.getInt("memberId");
                                             String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                             ResultSet member = db.doQuery(memQuery);
@@ -125,30 +119,34 @@
                                             <a href="<%=request.getContextPath()%>/<%=username%>">
                                                 <strong class="text" style="color: #FC6544">@<%= username%></strong>
                                             </a>
-                                            <p>
+                                            <h3 style=" margin-top: auto; margin-right: 90px; ">
                                                 <%= question%>
-                                            </p>
+                                            </h3>
                                             <p>
+
                                                 <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em;">Answer</a>
                                                 <%
                                                     if (admin) {
                                                 %>
-
-                                                <a href="Delete?type=question&id=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;">Delete</a>
-                                                <%
-                                                    }
-                                                %>
-                                                &nbsp;
-                                                <%! int answerNum = 0;%>
-                                                <%
-                                                    query = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
-                                                    db = new DBQueryBean();
-                                                    ResultSet rs = db.doQuery(query);
-                                                    while (rs.next()) {
-                                                        answerNum = rs.getInt(1);
-                                                    }
-                                                %>
-                                                <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
+                                            <form action="Delete" method="POST">
+                                                <input type="hidden" name="type" value="question" />
+                                                <input type="hidden" name="id" value="<%=questionId%>" />
+                                                <input type="submit" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;" value="Delete">
+                                            </form>
+                                            <%
+                                                }
+                                            %>
+                                            &nbsp;
+                                            <%! int answerNum = 0;%>
+                                            <%
+                                                String countQuery = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
+                                                DBQueryBean ddb = new DBQueryBean();
+                                                ResultSet rs = ddb.doQuery(countQuery);
+                                                if (rs.next()) {
+                                                    answerNum = rs.getInt(1);
+                                                }
+                                            %>
+                                            <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
                                             </p>
                                         </div>
                                         <hr/>

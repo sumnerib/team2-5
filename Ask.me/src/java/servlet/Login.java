@@ -55,6 +55,7 @@ public class Login extends HttpServlet {
                 
                 session.setAttribute("loggedIn", true);
                 session.setAttribute("userid", username);
+                session.setAttribute("admin", true);
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Welcome!</strong> Glad you are back."
                         + "</div>");

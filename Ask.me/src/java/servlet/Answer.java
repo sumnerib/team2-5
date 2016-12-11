@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import db.DBQueryBean;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,6 +41,8 @@ public class Answer extends HttpServlet {
 
         DBQueryBean db = new DBQueryBean();
         questionId = Integer.parseInt(request.getParameter("questionId"));
+        HttpSession session = request.getSession();
+        session.setAttribute("questionId", questionId);
 
         String query = "SELECT question, memberId FROM questions WHERE questionId = "
                 + questionId;

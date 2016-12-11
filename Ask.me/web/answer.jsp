@@ -42,21 +42,15 @@
         String picQuery = "SELECT image FROM members WHERE username = '" + request.getAttribute("asker") + "'";
         ResultSet memPic = db.doQuery(picQuery);
         if (memPic.next()) {
-            if (memPic.getString("image") != null)
-            askerImage = memPic.getString("image");
+            if (memPic.getString("image") != null) {
+                askerImage = memPic.getString("image");
+            }
             if (!askerImage.endsWith(".jpeg") && !askerImage.endsWith(".jpg") && !askerImage.endsWith(".png")) {
                 askerImage = "http://placehold.it/350x150";
             }
         }
 
-        Boolean admin = false;
-        String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
-        db = new DBQueryBean();
-        ResultSet adminSet = db.doQuery(adminQuery);
-        while (adminSet.next()) {
-            admin = adminSet.getBoolean("admin");
-        }
-
+        Boolean admin = (Boolean) session.getAttribute("admin");
 
     %>
     <body>
@@ -116,8 +110,8 @@
                             </div>
                             <div class="panel-body">
                                 <div class="clearfix"></div>
-                                <%! String answerId; %>
-                                <%                                    
+                                <%! String answerId;%>
+                                <%
                                     int questionId = Integer.parseInt(request.getParameter("questionId"));
                                     String query = "SELECT questionId, answer, memberId, answerId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
                                     db = new DBQueryBean();
@@ -144,16 +138,19 @@
                                     </a>
                                     <div class="media-body"><a href="<%=request.getContextPath()%>/<%=username%>">
                                             <strong class="text" style="color: #FC6544">@<%= username%></strong>
-                                        </a><p>
+                                        </a><h3 style=" margin-top: auto; margin-right: 90px; ">
                                             <%= answer%>
-                                        </p>
+                                        </h3>
 
                                         <%
                                             if (admin) {
                                                 session.setAttribute("questionId", questionId);
                                         %>
-
-                                        <a href="Delete?type=answer&id=<%=answerId%>" class="smBtn pull-right" style="margin-top: -4em; margin-right: 10px; background: #a94442;">Delete</a>
+                                        <form action="Delete" method="POST">
+                                            <input type="hidden" name="type" value="answer" />
+                                            <input type="hidden" name="id" value="<%=answerId%>" />
+                                            <input type="submit" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;" value="Delete">
+                                        </form>
                                         <%
                                             }
                                         %>
