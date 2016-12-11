@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.DBQueryBean;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,35 +34,44 @@ public class Delete extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         DBQueryBean db = new DBQueryBean();
         String type = request.getParameter("type");
         String id = request.getParameter("id");
-        
+        HttpSession session = request.getSession();
+
         switch (type) {
-            
-            case "question":
+
+            case "question": {
+                String command1 = "DELETE FROM questions WHERE questionId = "
+                        + id;
+                String command2 = "DELETE FROM answers WHERE questionId = "
+                        + id;
                 
-                String command1 = "DELETE FROM questions WHERE questionId = '"
-                        + id + "'";
-                String command2 = "DELETE FROM answers WHERE questionId = '"
-                        + id + ";";
-                
-                db.doUpdate(command1);
                 db.doUpdate(command2);
+                db.doUpdate(command1);
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Done!</strong> Question #" + id + " has been deleted."
+                        + "</div>");
                 forwardTo("/feed.jsp", request, response);
-            case "answer":
-                
-                String command = "DELETE FROM answers WHERE answerId = '"
-                        + id + "'";
-                
+            }
+            break;
+            case "answer": {
+                int questionId = (Integer)session.getAttribute("questionId");
+
+                String command = "DELETE FROM answers WHERE answerId = "
+                        + id;
+
                 db.doUpdate(command);
-                forwardTo("/answer.jsp", request, response);
-            default:
-                forwardTo("/error.jsp", request, response);
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Done!</strong> Answer #"+id+" has been deleted."
+                        + "</div>");
+                forwardTo("/answer?questionId="+questionId, request, response);
+            }
+            break;
         }
     }
-    
+
     /**
      * Forward a request to another component.
      *

@@ -89,23 +89,12 @@
                 <div>${errorMessage}</div>
                 <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
                     <input type="hidden" name="type" value="updatePass"></input>
-                    <!-- Update password-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="newPassword">New Password</label>  
-                        <div class="col-md-4">
-                            <input id="newPassword" name="newPassword" type="password" placeholder="New Password" class="form-control input-md">
-
-                        </div>
-                    </div>
-
-                    <!-- Update password confirm-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="newPassword">Confirm New Password</label>  
-                        <div class="col-md-4">
-                            <input id="conNewPassword" name="conNewPassword" type="password" placeholder="New Password" class="form-control input-md">
-
-                        </div>
-                    </div>
+                    
+                        <input name="newPassword" type="password" placeholder="Your new password" required/>
+                        
+                        
+                        <input name="conNewPassword" type="password" placeholder="Confirm your new password" required/>
+           
                     <button type="submit">Update my password</button>
                 </form>
             </div>

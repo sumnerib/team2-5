@@ -42,10 +42,19 @@
         String picQuery = "SELECT image FROM members WHERE username = '" + request.getAttribute("asker") + "'";
         ResultSet memPic = db.doQuery(picQuery);
         if (memPic.next()) {
+            if (memPic.getString("image") != null)
             askerImage = memPic.getString("image");
             if (!askerImage.endsWith(".jpeg") && !askerImage.endsWith(".jpg") && !askerImage.endsWith(".png")) {
                 askerImage = "http://placehold.it/350x150";
             }
+        }
+
+        Boolean admin = false;
+        String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        db = new DBQueryBean();
+        ResultSet adminSet = db.doQuery(adminQuery);
+        while (adminSet.next()) {
+            admin = adminSet.getBoolean("admin");
         }
 
 
@@ -82,23 +91,23 @@
         <!-- Page Content -->
         <div class="container">
             <div id="top" class="col-lg-12" style="margin-bottom: 60px">
-            ${topBar}
-                    <h3><div><a href="/Ask.me/${asker}" class="pull-left">
-                                <div class="userAnswer" style="background-image: url('<%=askerImage%>');"></div>
-                            </a><div>${question}</div>
-                            <p style="font-size: 20px;">by <a href="/Ask.me/${asker}"><strong class="text" style="color: #FC6544">@${asker}
-                                    </strong></a>
-                            </p>
-                        </div>
-                    </h3>
-                    <hr>
+                ${topBar}
+                <h3><div><a href="/Ask.me/${asker}" class="pull-left">
+                            <div class="userAnswer" style="background-image: url('<%=askerImage%>');"></div>
+                        </a><div>${question}</div>
+                        <p style="font-size: 20px;">by <a href="/Ask.me/${asker}"><strong class="text" style="color: #FC6544">@${asker}
+                                </strong></a>
+                        </p>
+                    </div>
+                </h3>
+                <hr>
             </div>
-            
+
             <div id="top" class="col-lg-12">
-                    
-            <!-- Title -->
-            <div class="row">
-                
+
+                <!-- Title -->
+                <div class="row">
+
                     <!-- QUESTIONS WRAPPER START -->
                     <div class="qwt-wrapper">
                         <div class="panel panel-default">
@@ -107,13 +116,16 @@
                             </div>
                             <div class="panel-body">
                                 <div class="clearfix"></div>
-                                <%                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
-                                    String query = "SELECT questionId, answer, memberId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
+                                <%! String answerId; %>
+                                <%                                    
+                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
+                                    String query = "SELECT questionId, answer, memberId, answerId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
                                     db = new DBQueryBean();
                                     ResultSet resultSet = db.doQuery(query);
                                     while (resultSet.next()) {
                                         String answer = resultSet.getString("answer");
                                         int memberId = resultSet.getInt("memberId");
+                                        answerId = resultSet.getString("answerId");
                                         String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                         ResultSet member = db.doQuery(memQuery);
                                         member.next();
@@ -135,6 +147,16 @@
                                         </a><p>
                                             <%= answer%>
                                         </p>
+
+                                        <%
+                                            if (admin) {
+                                                session.setAttribute("questionId", questionId);
+                                        %>
+
+                                        <a href="Delete?type=answer&id=<%=answerId%>" class="smBtn pull-right" style="margin-top: -4em; margin-right: 10px; background: #a94442;">Delete</a>
+                                        <%
+                                            }
+                                        %>
                                     </div>
                                     <hr/>
                                 </li>
@@ -149,7 +171,7 @@
 
                                     <form action="answer?questionId=<%=questionId%>" method="POST">
                                         <textarea class="form-control" name="yourAnswer" id="yourAnswer" placeholder="Your answer" rows="3"></textarea>
-                                        &nbsp;<button href="answer?questionId=<%=questionId%>" class="btn btn-primary btn-sm center-block">Answer</button>
+                                        &nbsp;<button href="answer?questionId=<%=answerId%>" class="btn btn-primary btn-sm center-block">Answer</button>
                                     </form>
 
                                 </ul>

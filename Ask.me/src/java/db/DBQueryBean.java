@@ -32,7 +32,7 @@ public class DBQueryBean {
             dbUrl = "jdbc:mysql://localhost:3306/team25_db",
             dbUserId = "team25",
             dbPassword = "k!lo6";
-    private Connection con;
+    public Connection con;
     
     /**
      * This constructs the bean and opens its connection.
