@@ -34,6 +34,13 @@
     <jsp:forward page="login.jsp" />
     <%
         }
+        Boolean admin = false;
+        String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        DBQueryBean adminDb = new DBQueryBean();
+        ResultSet adminSet = adminDb.doQuery(adminQuery);
+        if (adminSet.next()) {
+            admin = adminSet.getBoolean("admin");
+        }
     %>
     <body>
         <!-- Fixed navbar -->
@@ -90,7 +97,6 @@
                                 <ul class="media-list">
                                     <%@ page import="java.sql.*" %>
                                     <%
-                                        Boolean admin = (Boolean) session.getAttribute("admin");
                                         String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 5";
                                         DBQueryBean db = new DBQueryBean();
                                         ResultSet resultSet = db.doQuery(query);
@@ -126,23 +132,23 @@
 
                                                 <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em;">Answer</a>
                                                 <%
-                                                    if (admin) {
+                                                    if (admin != null && admin.booleanValue()) {
                                                 %>
                                                 <a href="Delete?type=question&id=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;">Delete</a>
-                                            <%
-                                                }
-                                            %>
-                                            &nbsp;
-                                            <%! int answerNum = 0;%>
-                                            <%
-                                                String countQuery = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
-                                                DBQueryBean ddb = new DBQueryBean();
-                                                ResultSet rs = ddb.doQuery(countQuery);
-                                                if (rs.next()) {
-                                                    answerNum = rs.getInt(1);
-                                                }
-                                            %>
-                                            <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
+                                                <%
+                                                    }
+                                                %>
+                                                &nbsp;
+                                                <%! int answerNum = 0;%>
+                                                <%
+                                                    String countQuery = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
+                                                    DBQueryBean ddb = new DBQueryBean();
+                                                    ResultSet rs = ddb.doQuery(countQuery);
+                                                    if (rs.next()) {
+                                                        answerNum = rs.getInt(1);
+                                                    }
+                                                %>
+                                                <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
                                             </p>
                                         </div>
                                         <hr/>

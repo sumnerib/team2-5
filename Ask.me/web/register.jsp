@@ -227,7 +227,7 @@
                     <div class="row">
                         <div class="btn-group" data-toggle="buttons">
                             <div class="col-sm-6">
-                                <label class="btn btn-primary active">Male<input class="hidden" type="radio" name="gender" value="M" id="male" autocomplete="off" checked></label>
+                                <label class="btn btn-primary active">Male<input class="hidden" type="radio" name="gender" value="M" id="male" autocomplete="off"></label>
                             </div>
                             <div class="col-sm-6">
                                 <label class="btn btn-primary">Female<input class="hidden" type="radio" name="gender" value="F" id="female" autocomplete="off"></label>

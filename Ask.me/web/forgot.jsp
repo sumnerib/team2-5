@@ -67,7 +67,7 @@
                 <label>Your Security Question</label>
                     <div class="row">
                         <div style="margin-left: 16px; margin-right: 16px">
-                            <select id="secQuestion" name="secQuestion" class="form-control">
+                            <select id="secQuestion" name="secQuestion" class="form-control input-lg">
                                 <option value="What was your childhood nickname?">What was your childhood nickname?</option>
                                 <option value="What is your favorite team?">What is your favorite team?</option>
                                 <option value="What is your favorite movie?">What is your favorite movie?</option>

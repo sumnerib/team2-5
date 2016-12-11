@@ -35,6 +35,14 @@
     <jsp:forward page="login.jsp" />
     <%
         }
+        
+        Boolean admin = false;
+        String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        DBQueryBean adminDb = new DBQueryBean();
+        ResultSet adminSet = adminDb.doQuery(adminQuery);
+        if (adminSet.next()) {
+            admin = adminSet.getBoolean("admin");
+        }
     %>
     <%
         String askerImage = "";
@@ -49,8 +57,6 @@
                 askerImage = "http://placehold.it/350x150";
             }
         }
-
-        Boolean admin = (Boolean) session.getAttribute("admin");
 
     %>
     <body>
@@ -148,7 +154,7 @@
                                         </h3>
 
                                         <%
-                                            if (admin) {
+                                        if (admin != null && admin.booleanValue()) {
                                         %>
                                         <a href="Delete?type=answer&id=<%=answerId%>" class="smBtn pull-right" style="margin-top: -4em; margin-right: 10px; background: #a94442;">Delete</a>
                                         <%

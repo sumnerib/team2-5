@@ -77,7 +77,7 @@
                             </p>
                         </div>
                             
-                        <div class="pull-right"><p class="message">Forgot password? <a href="forgot.jsp">Retrieve password</a></p>
+                        <div class="pull-right"><p class="message">Forgot password? <a href="forgot.jsp">Reset password</a></p>
                         </div>
                         </p>
                         </div>
