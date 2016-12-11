@@ -102,7 +102,7 @@
                 <!-- Title -->
                 <div class="row">
 
-                    <!-- QUESTIONS WRAPPER START -->
+                    <!-- Answers WRAPPER START -->
                     <div class="qwt-wrapper">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -110,12 +110,18 @@
                             </div>
                             <div class="panel-body">
                                 <div class="clearfix"></div>
-                                <%! String answerId;%>
+                                <%! String answerId;
+                                    int questionId;%>
                                 <%
-                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
-                                    String query = "SELECT questionId, answer, memberId, answerId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
-                                    db = new DBQueryBean();
-                                    ResultSet resultSet = db.doQuery(query);
+                                    if (request.getParameter("questionId") == null) {
+                                        response.sendRedirect("error.jsp");
+                                    }
+                                    questionId = Integer.parseInt(request.getParameter("questionId"));
+
+                                    session.setAttribute("questionId", questionId);
+                                    String query = "SELECT answer, memberId, answerId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
+                                    DBQueryBean ddb = new DBQueryBean();
+                                    ResultSet resultSet = ddb.doQuery(query);
                                     while (resultSet.next()) {
                                         String answer = resultSet.getString("answer");
                                         int memberId = resultSet.getInt("memberId");
@@ -125,9 +131,8 @@
                                         member.next();
                                         String username = member.getString(1);
                                         String image = member.getString(2);
-                                        if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                                        if (member.wasNull() || !image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
                                             image = "http://placehold.it/350x150";
-                                        } else if (member.wasNull()) {
                                             image = "http://placehold.it/350x150";
                                         }
 
@@ -144,13 +149,8 @@
 
                                         <%
                                             if (admin) {
-                                                session.setAttribute("questionId", questionId);
                                         %>
-                                        <form action="Delete" method="POST">
-                                            <input type="hidden" name="type" value="answer" />
-                                            <input type="hidden" name="id" value="<%=answerId%>" />
-                                            <input type="submit" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;" value="Delete">
-                                        </form>
+                                        <a href="Delete?type=answer&id=<%=answerId%>" class="smBtn pull-right" style="margin-top: -4em; margin-right: 10px; background: #a94442;">Delete</a>
                                         <%
                                             }
                                         %>
@@ -168,14 +168,14 @@
 
                                     <form action="answer?questionId=<%=questionId%>" method="POST">
                                         <textarea class="form-control" name="yourAnswer" id="yourAnswer" placeholder="Your answer" rows="3"></textarea>
-                                        &nbsp;<button href="answer?questionId=<%=answerId%>" class="btn btn-primary btn-sm center-block">Answer</button>
+                                        &nbsp;<button name="postAnswer" value="Add" href="answer?questionId=<%=questionId%>" class="btn btn-primary btn-sm center-block">Answer</button>
                                     </form>
 
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <!-- Question WRAPPER END -->
+                    <!-- Answers WRAPPER END -->
                 </div>
             </div>
             <!-- /.row -->

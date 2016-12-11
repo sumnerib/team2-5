@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Answer", urlPatterns = {"/answer"})
 public class Answer extends HttpServlet {
+
     private int questionId;
     private String question;
     private String username;
@@ -76,31 +77,35 @@ public class Answer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getParameter("postAnswer") != null) {
 
-        String answer = request.getParameter("yourAnswer");
-        DBQueryBean db = new DBQueryBean();
-        int aid;
-        
-        questionId = Integer.parseInt(request.getParameter("questionId"));
-        request.setAttribute("question", question);
-        request.setAttribute("asker", username);
-        
+            String answer = request.getParameter("yourAnswer");
+            DBQueryBean db = new DBQueryBean();
+            int aid;
 
-        try {
-            // Increment answerId
-            String getMax = "SELECT MAX(answerId) AS max FROM answers;";
-            ResultSet result = db.doQuery(getMax);
-            result.next();
-            aid = result.getInt(1) + 1;
+            questionId = Integer.parseInt(request.getParameter("questionId"));
+            request.setAttribute("question", question);
+            request.setAttribute("asker", username);
 
-            db.addAnswer(aid, answer, questionId,
-                    (String) request.getSession().getAttribute("userid"));
-            
-            
-            forwardTo("/answer.jsp", request, response);
-            response.sendRedirect("/Ask.me/answer.jsp");
-        } catch (SQLException sql) {
-            sql.printStackTrace();
+            try {
+                // Increment answerId
+                String getMax = "SELECT MAX(answerId) AS max FROM answers;";
+                ResultSet result = db.doQuery(getMax);
+                result.next();
+                aid = result.getInt(1) + 1;
+
+                db.addAnswer(aid, answer, questionId,
+                        (String) request.getSession().getAttribute("userid"));
+
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Yes!</strong> Your answer has been posted."
+                        + "</div>");
+
+                forwardTo("/answer.jsp", request, response);
+            } catch (SQLException sql) {
+                sql.printStackTrace();
+            }
+
         }
 
     }

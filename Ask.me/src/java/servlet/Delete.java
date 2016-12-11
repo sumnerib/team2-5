@@ -32,16 +32,16 @@ public class Delete extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        DBQueryBean db = new DBQueryBean();
+        
         String type = request.getParameter("type");
         String id = request.getParameter("id");
         HttpSession session = request.getSession();
 
         switch (type) {
             case "question": {
+                DBQueryBean db = new DBQueryBean();
                 String command1 = "DELETE FROM questions WHERE questionId = "
                         + id;
                 String command2 = "DELETE FROM answers WHERE questionId = "
@@ -55,12 +55,13 @@ public class Delete extends HttpServlet {
                 forwardTo("/feed.jsp", request, response);
             } break;
             case "answer": {
+                DBQueryBean ddb = new DBQueryBean();
                 int questionId = (Integer)session.getAttribute("questionId");
 
                 String command = "DELETE FROM answers WHERE answerId = "
                         + id;
 
-                db.doUpdate(command);
+                ddb.doUpdate(command);
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Done!</strong> Answer #"+id+" has been deleted."
                         + "</div>");

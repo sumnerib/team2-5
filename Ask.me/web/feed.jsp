@@ -90,7 +90,7 @@
                                 <ul class="media-list">
                                     <%@ page import="java.sql.*" %>
                                     <%
-                                        Boolean admin = (Boolean)session.getAttribute("admin");
+                                        Boolean admin = (Boolean) session.getAttribute("admin");
                                         String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 5";
                                         DBQueryBean db = new DBQueryBean();
                                         ResultSet resultSet = db.doQuery(query);
@@ -128,11 +128,7 @@
                                                 <%
                                                     if (admin) {
                                                 %>
-                                            <form action="Delete" method="POST">
-                                                <input type="hidden" name="type" value="question" />
-                                                <input type="hidden" name="id" value="<%=questionId%>" />
-                                                <input type="submit" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;" value="Delete">
-                                            </form>
+                                                <a href="Delete?type=question&id=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em; margin-right: 10px; background: #a94442;">Delete</a>
                                             <%
                                                 }
                                             %>

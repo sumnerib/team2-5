@@ -60,7 +60,7 @@
                     <legend><strong>Oops! :(</strong></legend>
                         <div>${errorMessage}</div>
                         <p class="text-danger">There seem to be something wrong with your requested page.</p>
-                        <a href="/Ask.me/index.jsp"><button>take me back home</button></a>
+                        <a href="<%=request.getContextPath()%>/index.jsp"><button>take me back home</button></a>
                 </div>
             </div>
             <!-- Error WRAPPER END -->
