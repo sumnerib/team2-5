@@ -489,6 +489,7 @@
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <select id="newGender" name="newGender" class="form-control">
+                                                                <option value="">Gender</option>
                                                                 <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
                                                             </select>

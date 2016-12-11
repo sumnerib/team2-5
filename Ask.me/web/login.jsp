@@ -68,8 +68,8 @@
                     <legend><strong>Login</strong></legend>
                     <form action="login" method="POST" class="login-form" data-toggle="validator" role="form">
                         <div>${errorMessage}</div>
-                        <input name="username" type="text" placeholder="username" required/>
-                        <input name="password" type="password" placeholder="password" required/>
+                        <input name="username" type="text" placeholder="Username" required/>
+                        <input name="password" type="password" placeholder="Password" required/>
                         <button>login</button>
                         <div class="row">
                             <p class="message">
@@ -103,17 +103,6 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Validation code -->
-                <script type="text/javascript">
-                    function validateForm() {
-                        var x = document.forms["myForm"]["fname"].value;
-                        if (x == "") {
-                            alert("Name must be filled out");
-                            return false;
-                        }
-                    }
 
                 </script>
 

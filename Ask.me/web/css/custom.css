@@ -13,6 +13,11 @@ body {
 
 }
 
+html *
+{
+   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
 hr {
     display: block;
     height: 1px;

@@ -52,17 +52,17 @@ public class Feed extends HttpServlet {
             LOG.log(Level.INFO, "********SHOULD BE UPDATING DB********");
             try {
                 insertData(request.getSession());
-                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                request.setAttribute("topBar", "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">\n"
                         + "  <strong>Yes!</strong> Your question has been posted."
                         + "</div>");
             } catch (SQLException ex) {
                 //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
             }
-            response.sendRedirect("/Ask.me/feed.jsp");
+            forwardTo("/feed.jsp", request, response);
         } else {
             LOG.log(Level.INFO, "*******NOT UPDATING DB**********");
-            request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+            request.setAttribute("topBar", "<div class=\"alert alert-danger alert-dismissable fade in\" role=\"alert\">\n"
                         + "  <strong>No!</strong> Something wrong went."
                         + "</div>");
             forwardTo("/feed.jsp", request, response);

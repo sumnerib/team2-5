@@ -47,9 +47,11 @@ public class ErrorHandler extends HttpServlet {
             String query = "SELECT * FROM members WHERE username = '" + name + "'";
             DBQueryBean db = new DBQueryBean();
             ResultSet resultSet = db.doQuery(query);
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 session.setAttribute("memberProfile", name);
                 forwardTo("/member.jsp", request, response);
+            } else {
+                response.sendRedirect("/Ask.me/error.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();

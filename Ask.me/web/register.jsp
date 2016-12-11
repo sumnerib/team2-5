@@ -70,10 +70,11 @@
                     <input  type="email" id="email" name="email" placeholder="Your Email" data-error="Email address is invalid" required/>
                     <input type="password" name="password" value="" placeholder="Password" required/>
                     <input type="password" name="confirm_password" value="" placeholder="Confirm Password" required/>
+                    <hr>
                     <label>Birth Date</label>
                     <div class="row">
                         <div class="col-xs-4 col-md-4">
-                            <select id="month" name="month" class="form-control">
+                            <select id="month" name="month" class="form-control input-lg">
                                 <option value="01">Jan</option>
                                 <option value="02">Feb</option>
                                 <option value="03">Mar</option>
@@ -89,7 +90,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="day" name="day" class="form-control">
+                            <select id="day" name="day" class="form-control input-lg">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -124,7 +125,7 @@
                             </select>                        
                         </div>
                         <div class="col-xs-4 col-md-4">
-                            <select id="year" name="year" class="form-control">
+                            <select id="year" name="year" class="form-control input-lg">
                                 <option value="1935">1935</option>
                                 <option value="1936">1936</option>
                                 <option value="1937">1937</option>
@@ -207,10 +208,11 @@
                             </select>                        
                         </div>
                     </div>
+                    <hr>
                     <label>Security Question</label>
                     <div class="row">
                         <div style="margin-left: 16px; margin-right: 16px">
-                            <select id="secQuestion" name="secQuestion" class="form-control">
+                            <select id="secQuestion" name="secQuestion" class="form-control input-lg">
                                 <option value="What was your childhood nickname?">What was your childhood nickname?</option>
                                 <option value="What is your favorite team?">What is your favorite team?</option>
                                 <option value="What is your favorite movie?">What is your favorite movie?</option>
@@ -220,27 +222,30 @@
                         </div>
                     </div>
                     <input type="text" id="secAnswer" name="secAnswer" value="" placeholder="Your Answer" required/>
+                    <hr>
                     <label>Gender</label>
                     <div class="spacer"></div>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" value="M" id="male" checked="checked"/>
-                        Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" value="F" id="fmale" />
-                        Female
-                    </label>
-                    <br />
+                    <div class="row">
+                        <div class="btn-group" data-toggle="buttons">
+                            <div class="col-sm-6">
+                                <label class="btn btn-primary active">Male<input class="hidden" type="radio" name="gender" value="M" id="male" autocomplete="off" checked></label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="btn btn-primary">Female<input class="hidden" type="radio" name="gender" value="F" id="female" autocomplete="off"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
                     <span class="help-block">By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.</span>
                     <button type="submit">
                         Create my account</button>
-                    </form>
+                </form>
             </div>
         </div>
         <!-- /.row -->
 
 
-        
+
 
 
         <!-- Fixed footer -->

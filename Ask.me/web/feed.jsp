@@ -77,8 +77,10 @@
                     <div class="qwt-wrapper">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Post your question here
-                            </div>
+                                        <h3 class="panel-title" style="text-align: center;">
+                                            Post your question here
+                                        </h3>
+                                    </div>
                             <div class="panel-body">
                                 <!--
                                 <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>

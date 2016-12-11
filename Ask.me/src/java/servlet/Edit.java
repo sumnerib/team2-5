@@ -68,7 +68,7 @@ public class Edit extends HttpServlet {
         map.put("pass", newPassword);
         map.put("name", newName);
         //map.put("dob", "2012-12-21");
-        map.put("gender", newGender.substring(0, 1));
+        if (!newGender.equalsIgnoreCase("")) map.put("gender", newGender.substring(0, 1));
         map.put("image", newPhoto);
         
         LOG.log(Level.INFO, "********YOUR DOB " + newDOBYear + "-" + newDOBMonth + "-" + newDOBDay + "********");
