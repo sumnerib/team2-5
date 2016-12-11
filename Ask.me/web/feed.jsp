@@ -101,16 +101,22 @@
                                             String question = resultSet.getString("question");
                                             String questionId = resultSet.getString("questionId");
                                             int memberId = resultSet.getInt("memberId");
-                                            String memQuery = "SELECT username FROM members WHERE memberId = " + memberId;
+                                            String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                             ResultSet member = db.doQuery(memQuery);
                                             member.next();
                                             String username = member.getString(1);
+                                            String image = member.getString(2);
+                                            if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                                                image = "http://placehold.it/350x150";
+                                            } else if (member.wasNull()) {
+                                                image = "http://placehold.it/350x150";
+                                            }
                                     %>
 
 
                                     <li class="media">
                                         <a href="/Ask.me/<%=username%>" class="pull-left">
-                                            <div class="userFeed one"></div>
+                                            <div class="userFeed" style="background-image: url('<%=image%>');"></div>
                                         </a>
                                         <div class="media-body">
                                             <a href="/Ask.me/<%=username%>">

@@ -72,8 +72,8 @@
                 <div id="top" class="col-lg-12">
                     ${topBar}
                     <h3><div><div>${question}</div>
-                            <p style="font-size: 20px;">by <strong class="text" style="color: #FC6544">@${asker}
-                                </strong>
+                            <p style="font-size: 20px;">by <a href="/Ask.me/${asker}"><strong class="text" style="color: #FC6544">@${asker}
+                                    </strong></a>
                             </p>
                         </div>
                     </h3>

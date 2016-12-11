@@ -37,7 +37,9 @@
     %>
     <jsp:forward page="login.jsp" />
     <%! String name, gender, image, email;
-        Date date;%> 
+        Date date;
+        int memberId;
+    %> 
     %>
     <%
     } else if (username.equalsIgnoreCase(loggedInUsername)) {
@@ -45,7 +47,7 @@
     <jsp:forward page="profile.jsp" />
     <%
         }
-        String query = "SELECT name, dob, gender, image FROM members WHERE username = '" + session.getAttribute("memberProfile") + "'";
+        String query = "SELECT name, dob, gender, image, email, memberId FROM members WHERE username = '" + session.getAttribute("memberProfile") + "'";
         DBQueryBean db = new DBQueryBean();
         ResultSet resultSet = db.doQuery(query);
         while (resultSet.next()) {
@@ -54,6 +56,12 @@
             gender = resultSet.getString("gender");
             image = resultSet.getString("image");
             email = resultSet.getString("email");
+            memberId = resultSet.getInt("memberId");
+            if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                image = "http://placehold.it/350x150";
+            } else if (resultSet.wasNull()) {
+                image = "http://placehold.it/350x150";
+            }
         }
     %>
     <body>
@@ -95,10 +103,10 @@
                     <h3>Profile</h3>
                     <hr>
                     <!-- Profile WRAPPER START -->
-                    <div class="container">
+                    <div class="qwt-wrapper">
                         <div class="tab-content">
                             <div id="profile" class="tab-pane fade in active">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: auto;">
                                     <div class="panel-heading">
                                         <h3 class="panel-title" style="text-align: center;">
                                             <% out.print(name);%>!
@@ -108,7 +116,7 @@
                                         <div>
                                             <div>
                                                 <div class="row">
-                                                    <div class="user one"></div>
+                                                    <div class="user" style="background-image: url('<%=image%>');"></div>
                                                 </div>
                                                 <div> 
                                                     &nbsp;
@@ -118,7 +126,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>Username:</td>
-                                                                <td>@<%=session.getAttribute("userid")%> </td>
+                                                                <td>@<%=session.getAttribute("memberProfile")%> </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Date of Birth</td>
@@ -138,7 +146,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td><a href="mailto:<%=email%>"><%= email %></a></td>
+                                                                <td><a href="mailto:<%=email%>"><%=email%></a></td>
                                                             </tr>
 
 
@@ -423,7 +431,99 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <!-- QUESTIONS WRAPPER START -->
+                    <div class="qwt-wrapper">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="text-align: center;">
+                                    All of @<%=session.getAttribute("memberProfile")%> questions
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    <%
+                                        query = "SELECT questionId, question FROM questions WHERE memberId = " + memberId + " ORDER BY questionId DESC";
+                                        db = new DBQueryBean();
+                                        ResultSet questionSet = db.doQuery(query);
+                                        while (questionSet.next()) {
+                                            String question = questionSet.getString("question");
+                                            int questionId = questionSet.getInt("questionId");
+                                    %>
+                                    <li class="media">
+                                        <div class="media-body" style="border-bottom: 1px solid lightgray">
+                                            <p>
+                                                <%= question%>
+                                            </p>
+                                            <p>
+                                                <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em;">Answer</a>
+                                                &nbsp;
+                                                <%! int answerNum = 0;%>
+                                                <%
+                                                    query = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
+                                                    db = new DBQueryBean();
+                                                    ResultSet rs = db.doQuery(query);
+                                                    while (rs.next()) {
+                                                        answerNum = rs.getInt(1);
+                                                    }
+                                                %>
+                                                <small class="text-muted"> <a href="/Ask.me/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
 
+                                            </p>
+                                        </div>
+                                        </hr>
+                                    </li>
+
+
+                                    <%
+                                        }
+                                    %>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question WRAPPER END -->
+<hr>
+                    <!-- Answer WRAPPER START -->
+                    <div class="qwt-wrapper">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title" style="text-align: center;">
+                                    All of @<%=session.getAttribute("memberProfile")%> answers
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    <%
+                                        query = "SELECT questionId, answer FROM answers WHERE memberId = " + memberId + " ORDER BY questionId DESC";
+                                        db = new DBQueryBean();
+                                        ResultSet answerSet = db.doQuery(query);
+                                        while (answerSet.next()) {
+                                            String answer = answerSet.getString("answer");
+                                            int questionId = answerSet.getInt("questionId");
+                                    %>
+                                    <li class="media">
+                                        <div class="media-body" style="border-bottom: 1px solid lightgray">
+                                            <p>
+                                                <%= answer%>
+                                                <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-bottom: 1em;">Question page</a>
+
+                                            </p>
+                                        </div>
+                                        </hr>
+                                    </li>
+
+
+                                    <%
+                                        }
+                                    %>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Answer WRAPPER END -->
                 </div>
                 <!-- /.row -->
 

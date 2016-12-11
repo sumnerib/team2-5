@@ -35,10 +35,12 @@
     %>
     <jsp:forward page="login.jsp" />
     <%! String name, gender, image, email;
-        Date date;%> 
+        Date date;
+        int memberId;
+    %> 
     <%
         }
-        String query = "SELECT name, dob, gender, image, email FROM members WHERE username = '" + session.getAttribute("userid") + "'";
+        String query = "SELECT name, dob, gender, image, email, memberId FROM members WHERE username = '" + session.getAttribute("userid") + "'";
         DBQueryBean db = new DBQueryBean();
         ResultSet resultSet = db.doQuery(query);
         while (resultSet.next()) {
@@ -47,6 +49,12 @@
             gender = resultSet.getString("gender");
             image = resultSet.getString("image");
             email = resultSet.getString("email");
+            memberId = resultSet.getInt("memberId");
+            if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                image = "http://placehold.it/350x150";
+            } else if (resultSet.wasNull()) {
+                image = "http://placehold.it/350x150";
+            }
         }
     %>
     <body>
@@ -88,7 +96,7 @@
                     <h3>Profile</h3>
                     <hr>
                     <!-- Profile WRAPPER START -->
-                    <div class="container">
+                    <div class="qwt-wrapper">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
                             <li><a data-toggle="tab" href="#edit">Edit Profile</a></li>
@@ -96,7 +104,7 @@
 
                         <div class="tab-content">
                             <div id="profile" class="tab-pane fade in active">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default" style="margin-bottom: auto;">
                                     <div class="panel-heading">
                                         <h3 class="panel-title" style="text-align: center;">
                                             Hello, <% out.print(name);%>!
@@ -106,7 +114,7 @@
                                         <div>
                                             <div>
                                                 <div class="row">
-                                                    <div class="user one"></div>
+                                                    <div class="user" style="background-image: url('<%=image%>');"></div>
                                                 </div>
                                                 <div> 
                                                     &nbsp;
@@ -114,7 +122,7 @@
                                                     </div>
                                                     <table class="table table-user-information">
                                                         <tbody>
-                                                             <tr>
+                                                            <tr>
                                                                 <td>Username:</td>
                                                                 <td>@<%=session.getAttribute("userid")%> </td>
                                                             </tr>
@@ -136,7 +144,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Email</td>
-                                                                <td><a href="mailto:<%=email%>"><%= email %></a></td>
+                                                                <td><a href="mailto:<%=email%>"><%= email%></a></td>
                                                             </tr>
 
 
@@ -149,6 +157,99 @@
 
                                     </div>
                                 </div> 
+                                <hr>
+                                <!-- QUESTIONS WRAPPER START -->
+                                <div class="qwt-wrapper">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title" style="text-align: center;">
+                                                Here's a list of all of your questions.
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="media-list">
+                                                <%
+                                                    query = "SELECT questionId, question FROM questions WHERE memberId = " + memberId + " ORDER BY questionId DESC";
+                                                    db = new DBQueryBean();
+                                                    ResultSet questionSet = db.doQuery(query);
+                                                    while (questionSet.next()) {
+                                                        String question = questionSet.getString("question");
+                                                        int questionId = questionSet.getInt("questionId");
+                                                %>
+                                                <li class="media">
+                                                    <div class="media-body" style="border-bottom: 1px solid lightgray">
+                                                        <p>
+                                                            <%= question%>
+                                                        </p>
+                                                        <p>
+                                                            <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em;">Answer</a>
+                                                            &nbsp;
+                                                            <%! int answerNum = 0;%>
+                                                            <%
+                                                                query = "SELECT COUNT(*) FROM answers WHERE questionId = " + questionId;
+                                                                db = new DBQueryBean();
+                                                                ResultSet rs = db.doQuery(query);
+                                                                while (rs.next()) {
+                                                                    answerNum = rs.getInt(1);
+                                                                }
+                                                            %>
+                                                            <small class="text-muted"> <a href="/Ask.me/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
+
+                                                        </p>
+                                                    </div>
+                                                    </hr>
+                                                </li>
+
+
+                                                <%
+                                                    }
+                                                %>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Question WRAPPER END -->
+                                <hr>
+                                <!-- Answer WRAPPER START -->
+                                <div class="qwt-wrapper">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title" style="text-align: center;">
+                                                Here's a list of all of your questions.
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="media-list">
+                                                <%
+                                                    query = "SELECT questionId, answer FROM answers WHERE memberId = " + memberId + " ORDER BY questionId DESC";
+                                                    db = new DBQueryBean();
+                                                    ResultSet answerSet = db.doQuery(query);
+                                                    while (answerSet.next()) {
+                                                        String answer = answerSet.getString("answer");
+                                                        int questionId = answerSet.getInt("questionId");
+                                                %>
+                                                <li class="media">
+                                                    <div class="media-body" style="border-bottom: 1px solid lightgray">
+                                                        <p>
+                                                            <%= answer%>
+                                                            <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-bottom: 1em;">Question page</a>
+
+                                                        </p>
+                                                    </div>
+                                                    </hr>
+                                                </li>
+
+
+                                                <%
+                                                    }
+                                                %>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Answer WRAPPER END -->
                             </div>
                             <div id="edit" class="tab-pane fade">
                                 <div class="panel panel-default">
@@ -169,7 +270,7 @@
 
                                                         </div>
                                                     </div>
-                                                            
+
                                                     <!-- Update username-->
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label" for="newUsername">Username</label>  
@@ -201,9 +302,9 @@
                                                     <!-- Update DOB -->
                                                     <div class="form-group">
                                                         <div>
-                                                        <label for="newDOBDay" class="col-md-4 control-label">Date of birth</label>
+                                                            <label for="newDOBDay" class="col-md-4 control-label">Date of birth</label>
                                                         </div>
-                                                        
+
                                                         <div class="col-xs-4 col-md-2">   
                                                             <select name="newDOBDay" id="newDOBDay" class="form-control">
                                                                 <option value="">Day</option>
@@ -384,7 +485,7 @@
                                                     <!-- Update gender -->
                                                     <div class="form-group">
                                                         <div>
-                                                        <label class="col-md-4 control-label" for="newGender">Gender</label>
+                                                            <label class="col-md-4 control-label" for="newGender">Gender</label>
                                                         </div>
                                                         <div class="col-sm-2">
                                                             <select id="newGender" name="newGender" class="form-control">
@@ -397,9 +498,9 @@
 
                                                     <!-- Update photo --> 
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label" for="newPhoto">Upload photo</label>
+                                                        <label class="col-md-4 control-label" for="newPhoto">Profile photo URL</label>
                                                         <div class="col-md-4">
-                                                            <input id="newPhoto" name="newPhoto" class="input-file" type="file">
+                                                            <input id="newPhoto" name="newPhoto" type="text" placeholder="Put your photo url here"< class="form-control input-md">
                                                         </div>
                                                     </div>
 
@@ -413,15 +514,12 @@
 
                                                 </fieldset>
                                             </form>
-
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                </div>                       
+                            </div>                              
+                        </div>                             
                     </div>
-
                 </div>
                 <!-- /.row -->
 
