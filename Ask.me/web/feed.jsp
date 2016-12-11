@@ -126,7 +126,7 @@
                                                 <%= question%>
                                             </p>
                                             <p>
-                                                <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right">Answer</a>
+                                                <a href="answer?questionId=<%=questionId%>" class="smBtn pull-right" style="margin-top: -2em;">Answer</a>
                                                 &nbsp;
                                                 <%! int answerNum = 0;%>
                                                 <%
@@ -140,6 +140,7 @@
                                                 <small class="text-muted"> <a href="/Ask.me/answer?questionId=<%=questionId%>"><%= answerNum %></a> Answers</small>
                                             </p>
                                         </div>
+                                            <hr/>
                                     </li>
 
                                     <%

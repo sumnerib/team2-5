@@ -24,6 +24,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     </head>
+    <%@ page import="java.sql.*" %>
     <%
         Boolean loggedIn = (Boolean) session.getAttribute("loggedIn");
         if (loggedIn == null || !loggedIn.booleanValue()) {
@@ -34,6 +35,20 @@
     <jsp:forward page="login.jsp" />
     <%
         }
+    %>
+    <%
+        String askerImage = "";
+        DBQueryBean db = new DBQueryBean();
+        String picQuery = "SELECT image FROM members WHERE username = '" + request.getAttribute("asker") + "'";
+        ResultSet memPic = db.doQuery(picQuery);
+        if (memPic.next()) {
+            askerImage = memPic.getString("image");
+            if (!askerImage.endsWith(".jpeg") && !askerImage.endsWith(".jpg") && !askerImage.endsWith(".png")) {
+                askerImage = "http://placehold.it/350x150";
+            }
+        }
+
+
     %>
     <body>
         <!-- Fixed navbar -->
@@ -66,18 +81,24 @@
 
         <!-- Page Content -->
         <div class="container">
-
-            <!-- Title -->
-            <div class="row">
-                <div id="top" class="col-lg-12">
-                    ${topBar}
-                    <h3><div><div>${question}</div>
+            <div id="top" class="col-lg-12" style="margin-bottom: 60px">
+            ${topBar}
+                    <h3><div><a href="/Ask.me/${asker}" class="pull-left">
+                                <div class="userAnswer" style="background-image: url('<%=askerImage%>');"></div>
+                            </a><div>${question}</div>
                             <p style="font-size: 20px;">by <a href="/Ask.me/${asker}"><strong class="text" style="color: #FC6544">@${asker}
                                     </strong></a>
                             </p>
                         </div>
                     </h3>
                     <hr>
+            </div>
+            
+            <div id="top" class="col-lg-12">
+                    
+            <!-- Title -->
+            <div class="row">
+                
                     <!-- QUESTIONS WRAPPER START -->
                     <div class="qwt-wrapper">
                         <div class="panel panel-default">
@@ -86,31 +107,36 @@
                             </div>
                             <div class="panel-body">
                                 <div class="clearfix"></div>
-                                <%@ page import="java.sql.*" %>
-                                <%
-                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
+                                <%                                    int questionId = Integer.parseInt(request.getParameter("questionId"));
                                     String query = "SELECT questionId, answer, memberId FROM answers WHERE questionId = " + questionId + " ORDER BY answerId DESC";
-                                    DBQueryBean db = new DBQueryBean();
+                                    db = new DBQueryBean();
                                     ResultSet resultSet = db.doQuery(query);
                                     while (resultSet.next()) {
                                         String answer = resultSet.getString("answer");
                                         int memberId = resultSet.getInt("memberId");
-                                        String memQuery = "SELECT username FROM members WHERE memberId = " + memberId;
+                                        String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                         ResultSet member = db.doQuery(memQuery);
                                         member.next();
                                         String username = member.getString(1);
+                                        String image = member.getString(2);
+                                        if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                                            image = "http://placehold.it/350x150";
+                                        } else if (member.wasNull()) {
+                                            image = "http://placehold.it/350x150";
+                                        }
+
                                 %>
                                 <li class="media">
                                     <a href="/Ask.me/<%=username%>" class="pull-left">
-                                        <div class="userFeed one"></div>
+                                        <div class="userFeed" style="background-image: url('<%=image%>');"></div>
                                     </a>
                                     <div class="media-body"><a href="/Ask.me/<%=username%>">
-                                            <strong class="text" style="color: #FC6544">@<%= username %></strong>
-                                             </a><p>
+                                            <strong class="text" style="color: #FC6544">@<%= username%></strong>
+                                        </a><p>
                                             <%= answer%>
                                         </p>
                                     </div>
-                                    <hr />
+                                    <hr/>
                                 </li>
 
 

@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -56,6 +57,8 @@ public class Register extends HttpServlet {
         
         db = new DBQueryBean();
         
+        HttpSession session = request.getSession();
+        
         firstname = request.getParameter("firstname");
         lastname = request.getParameter("lastname");
         username = request.getParameter("username");
@@ -89,11 +92,15 @@ public class Register extends HttpServlet {
             try {
                 password = db.hashPassword(password);
                 insertData();
+                request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
+                        + "  <strong>Welcome @"+username+"!</strong> Post your first question."
+                        + "</div>");
+                session.setAttribute("loggedIn", true);
+                session.setAttribute("userid", username);
+                forwardTo("/feed.jsp", request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            forwardTo("/index.jsp", request, response);
         } 
         
         
