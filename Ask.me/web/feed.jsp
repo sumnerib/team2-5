@@ -81,11 +81,6 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <!--
-                                <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
-                                <br />
-                                <a href="fd" class="btn btn-primary btn-sm center-block">Ask</a>
-                                -->
                                 <form action="feed" method="GET">
                                     <textarea class="form-control" name="yourQuestion" id="yourQuestion" placeholder="What is your question?" rows="3"></textarea>
                                     &nbsp;<button href="fd" class="btn btn-primary btn-sm center-block">Ask</button>
@@ -123,11 +118,11 @@
 
 
                                     <li class="media">
-                                        <a href="/Ask.me/<%=username%>" class="pull-left">
+                                        <a href="<%=request.getContextPath()%>/<%=username%>" class="pull-left">
                                             <div class="userFeed" style="background-image: url('<%=image%>');"></div>
                                         </a>
                                         <div class="media-body">
-                                            <a href="/Ask.me/<%=username%>">
+                                            <a href="<%=request.getContextPath()%>/<%=username%>">
                                                 <strong class="text" style="color: #FC6544">@<%= username%></strong>
                                             </a>
                                             <p>
@@ -153,7 +148,7 @@
                                                         answerNum = rs.getInt(1);
                                                     }
                                                 %>
-                                                <small class="text-muted"> <a href="/Ask.me/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
+                                                <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
                                             </p>
                                         </div>
                                         <hr/>

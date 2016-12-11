@@ -92,10 +92,10 @@
         <div class="container">
             <div id="top" class="col-lg-12" style="margin-bottom: 60px">
                 ${topBar}
-                <h3><div><a href="/Ask.me/${asker}" class="pull-left">
+                <h3><div><a href="<%=request.getContextPath()%>/${asker}" class="pull-left">
                             <div class="userAnswer" style="background-image: url('<%=askerImage%>');"></div>
                         </a><div>${question}</div>
-                        <p style="font-size: 20px;">by <a href="/Ask.me/${asker}"><strong class="text" style="color: #FC6544">@${asker}
+                        <p style="font-size: 20px;">by <a href="<%=request.getContextPath()%>/${asker}"><strong class="text" style="color: #FC6544">@${asker}
                                 </strong></a>
                         </p>
                     </div>
@@ -139,10 +139,10 @@
 
                                 %>
                                 <li class="media">
-                                    <a href="/Ask.me/<%=username%>" class="pull-left">
+                                    <a href="<%=request.getContextPath()%>/<%=username%>" class="pull-left">
                                         <div class="userFeed" style="background-image: url('<%=image%>');"></div>
                                     </a>
-                                    <div class="media-body"><a href="/Ask.me/<%=username%>">
+                                    <div class="media-body"><a href="<%=request.getContextPath()%>/<%=username%>">
                                             <strong class="text" style="color: #FC6544">@<%= username%></strong>
                                         </a><p>
                                             <%= answer%>
