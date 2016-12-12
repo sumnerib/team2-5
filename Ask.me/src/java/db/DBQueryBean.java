@@ -16,6 +16,8 @@ import java.lang.IllegalArgumentException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is a bean that uses the members table
@@ -310,6 +312,32 @@ public class DBQueryBean {
         catch (SQLException sql) {
             sql.printStackTrace();
         }
+    }
+    
+    /**
+     * Checks the db for a username
+     * 
+     * @param username The username to be checked
+     * @return True or false if the db contains the username
+     */
+    public boolean checkForUser(String username) {
+        
+        String query = "SELECT * FROM members WHERE username = ?";
+        PreparedStatement st;
+        ResultSet rs;
+        boolean exists = false;
+        
+        try {
+            
+            st = con.prepareStatement(query);
+            st.setString(1, username);
+            rs = st.executeQuery();
+            exists = rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return exists;
     }
     
      /**
