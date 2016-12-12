@@ -143,15 +143,15 @@
                                         }
 
                                 %>
-                                <li class="media">
+                                <li class="media" style="list-style-type: none;">
                                     <a href="<%=request.getContextPath()%>/<%=username%>" class="pull-left">
                                         <div class="userFeed" style="background-image: url('<%=image%>');"></div>
                                     </a>
                                     <div class="media-body"><a href="<%=request.getContextPath()%>/<%=username%>">
                                             <strong class="text" style="color: #FC6544">@<%= username%></strong>
-                                        </a><h3 style=" margin-top: auto; margin-right: 90px; ">
+                                        </a><h4 style=" margin-top: auto; margin-right: 90px; ">
                                             <%= answer%>
-                                        </h3>
+                                        </h4>
 
                                         <%
                                         if (admin != null && admin.booleanValue()) {
