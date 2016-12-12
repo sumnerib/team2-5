@@ -47,12 +47,10 @@
             name = resultSet.getString("name");
             date = resultSet.getDate("dob");
             gender = resultSet.getString("gender");
-            image = resultSet.getString("image");
             email = resultSet.getString("email");
             memberId = resultSet.getInt("memberId");
-            if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
-                image = "http://placehold.it/350x150";
-            } else if (resultSet.wasNull()) {
+            String image = resultSet.getString("image");
+            if (resultSet.wasNull()) {
                 image = "http://placehold.it/350x150";
             }
         }

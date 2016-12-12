@@ -114,8 +114,7 @@
                                                 image = "http://placehold.it/350x150";
                                             } else {
                                                 image = member.getString("image");
-                                            }
-                                            
+                                            }    
                                     %>
 
 
