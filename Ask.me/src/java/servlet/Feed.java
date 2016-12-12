@@ -77,6 +77,7 @@ public class Feed extends HttpServlet {
         qid = result.getInt(1) + 1;
 
         db.addQuestion(qid, yourQuestion, (String) session.getAttribute("userid"));
+        db.closeCon();
     }
 
     @Override

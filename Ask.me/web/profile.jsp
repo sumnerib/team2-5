@@ -218,7 +218,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h3 class="panel-title" style="text-align: center;">
-                                                Here's a list of all of your questions.
+                                                Here's a list of all of your answers.
                                             </h3>
                                         </div>
                                         <div class="panel-body">
