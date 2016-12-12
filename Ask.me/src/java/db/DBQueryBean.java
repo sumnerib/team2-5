@@ -71,7 +71,7 @@ public class DBQueryBean {
             String dob, String gender, String pass, String email, String secQuestion, String secAnswer) {
         try {
             String insert = "INSERT INTO members(memberId, name, admin, username, "
-                    + "dob, gender, pass, email, secQuestion, secAnswer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "dob, gender, image, pass, email, secQuestion, secAnswer) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(insert);
             st.setInt(1, memid);
             st.setString(2, name);
@@ -79,10 +79,11 @@ public class DBQueryBean {
             st.setString(4, user);
             st.setDate(5, java.sql.Date.valueOf(dob));
             st.setString(6, gender);
-            st.setString(7, pass);
-            st.setString(8, email);
-            st.setString(9, secQuestion);
-            st.setString(10, secAnswer);
+            st.setString(7, "http://placehold.it/350x150");
+            st.setString(8, pass);
+            st.setString(9, email);
+            st.setString(10, secQuestion);
+            st.setString(11, secAnswer);
             
             st.execute();
               
