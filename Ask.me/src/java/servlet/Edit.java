@@ -66,7 +66,7 @@ public class Edit extends HttpServlet {
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
         
-        if (newPhoto != null) {
+        if (!newPhoto.equals("")) {
             if (!newPhoto.endsWith(".png") && !newPhoto.endsWith(".jpeg") 
                     && !newPhoto.endsWith(".jpg") && !newPhoto.endsWith(".gif")) {
                 
