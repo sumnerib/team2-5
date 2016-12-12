@@ -52,7 +52,7 @@ public class Forgot extends HttpServlet {
         secQuestion = request.getParameter("secQuestion");
         secAnswer = request.getParameter("secAnswer");
         HttpSession session = request.getSession();
-        ;
+        
 
         switch (request.getParameter("type")) {
             case "checkQA": {
@@ -77,9 +77,10 @@ public class Forgot extends HttpServlet {
                     }
                 } catch (SQLException sql) {
                     request.setAttribute("errorMessage", "<div class=\"alert alert-danger\" role=\"alert\">\n"
-                            + "  <strong>No!</strong> Yoursss question or answer is wrong."
+                            + "  <strong>No!</strong> Your question or answer is wrong."
                             + "</div>");
                     sql.printStackTrace();
+                    forwardTo("/forgot.jsp", request, response);
                 }
 
             }
