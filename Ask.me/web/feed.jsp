@@ -41,6 +41,7 @@
         if (adminSet.next()) {
             admin = adminSet.getBoolean("admin");
         }
+        adminDb.closeCon();
     %>
     <body>
         <!-- Fixed navbar -->
@@ -147,6 +148,7 @@
                                                     if (rs.next()) {
                                                         answerNum = rs.getInt(1);
                                                     }
+                                                    ddb.closeCon();
                                                 %>
                                                 <small class="text-muted"> <a href="<%=request.getContextPath()%>/answer?questionId=<%=questionId%>"><%= answerNum%></a> Answers</small>
                                             </p>
@@ -156,6 +158,7 @@
 
                                     <%
                                         }
+                                        db.closeCon();
                                     %>
 
                                 </ul>

@@ -94,7 +94,13 @@ public class Edit extends HttpServlet {
                     + "</div>");
             sql.printStackTrace();
         }
-
+        
+        try {
+            db.closeCon();
+        }
+        catch (SQLException sql) {
+            sql.printStackTrace();
+        }
         forwardTo("/profile.jsp", request, response);
     }
 

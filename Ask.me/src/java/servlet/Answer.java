@@ -60,6 +60,7 @@ public class Answer extends HttpServlet {
             username = member.getString(1);
             request.setAttribute("asker", username);
             request.setAttribute("questionId", questionId);
+            db.closeCon();
             forwardTo("/answer.jsp", request, response);
         } catch (SQLException sql) {
             sql.printStackTrace();
@@ -100,7 +101,8 @@ public class Answer extends HttpServlet {
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Yes!</strong> Your answer has been posted."
                         + "</div>");
-
+                
+                db.closeCon();
                 forwardTo("/answer.jsp", request, response);
             } catch (SQLException sql) {
                 sql.printStackTrace();

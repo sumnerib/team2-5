@@ -43,6 +43,7 @@
         if (adminSet.next()) {
             admin = adminSet.getBoolean("admin");
         }
+        adminDb.closeCon();
     %>
     <%
         String askerImage = "";
@@ -57,7 +58,7 @@
                 askerImage = "http://placehold.it/350x150";
             }
         }
-
+        db.closeCon();
     %>
     <body>
         <!-- Fixed navbar -->
@@ -132,8 +133,9 @@
                                         String answer = resultSet.getString("answer");
                                         int memberId = resultSet.getInt("memberId");
                                         answerId = resultSet.getString("answerId");
+                                        DBQueryBean memDb = new DBQueryBean();
                                         String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
-                                        ResultSet member = db.doQuery(memQuery);
+                                        ResultSet member = memDb.doQuery(memQuery);
                                         member.next();
                                         String username = member.getString(1);
                                         String image = member.getString(2);
@@ -141,7 +143,7 @@
                                             image = "http://placehold.it/350x150";
                                             image = "http://placehold.it/350x150";
                                         }
-
+                                        memDb.closeCon();
                                 %>
                                 <li class="media" style="list-style-type: none;">
                                     <a href="<%=request.getContextPath()%>/<%=username%>" class="pull-left">
@@ -167,6 +169,7 @@
 
                                 <%
                                     }
+                                    ddb.closeCon();
                                 %>
                                 <ul class="media-list">
 

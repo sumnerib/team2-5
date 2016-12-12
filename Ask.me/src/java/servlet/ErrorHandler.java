@@ -51,6 +51,7 @@ public class ErrorHandler extends HttpServlet {
                 session.setAttribute("memberProfile", name);
                 forwardTo("/member.jsp", request, response);
             } else {
+                db.closeCon();
                 response.sendRedirect("/team25-Ask.me/error.jsp");
             }
         } catch (Exception e) {
