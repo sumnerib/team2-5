@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -81,12 +83,16 @@ public class Forgot extends HttpServlet {
                             + "</div>");
                     sql.printStackTrace();
                 }
-
+            try {
+                db.closeCon();
+            } catch (SQLException ex) {
+                Logger.getLogger(Forgot.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             break;
             case "updatePass": {
 
-                DBQueryBean db = new DBQueryBean();
+                DBQueryBean dbb = new DBQueryBean();
 
                 newPassword = request.getParameter("newPassword");
                 newConPassword = request.getParameter("conNewPassword");
@@ -102,6 +108,11 @@ public class Forgot extends HttpServlet {
                     request.setAttribute("errorMessage", "<div class=\"alert alert-success\" role=\"alert\">\n"
                             + "  <strongYes!</strong> Your new password has been updated. Log in now."
                             + "</div>");
+                    try {
+                        dbb.closeCon();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Forgot.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     forwardTo("/login.jsp", request, response);
 
                 }

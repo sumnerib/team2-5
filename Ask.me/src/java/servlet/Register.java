@@ -119,6 +119,7 @@ public class Register extends HttpServlet {
                 username + "', '"+ dob +"', '" + gender + "', NULL, '" + password + "', '" +
                 email +"', '"+ secQuestion +"', '"+secAnswer +"');";
         db.addMember(mid,firstname+" "+lastname, username, dob, gender, "a", password, email, secQuestion, secAnswer);
+        db.closeCon();
     }
 
     /**

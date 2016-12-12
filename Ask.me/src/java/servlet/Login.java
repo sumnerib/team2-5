@@ -58,6 +58,7 @@ public class Login extends HttpServlet {
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Welcome!</strong> Glad you are back."
                         + "</div>");
+                db.closeCon();
                 forwardTo("/feed.jsp", request, response);
             }
             else {
