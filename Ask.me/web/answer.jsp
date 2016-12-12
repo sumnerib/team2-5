@@ -35,7 +35,7 @@
     <jsp:forward page="login.jsp" />
     <%
         }
-        
+
         Boolean admin = false;
         String adminQuery = "SELECT admin FROM members WHERE username = '" + session.getAttribute("userid") + "'";
         DBQueryBean adminDb = new DBQueryBean();
@@ -80,7 +80,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#contact" data-toggle="modal">Contact</a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
                         </li>            
@@ -156,7 +155,7 @@
                                         </h4>
 
                                         <%
-                                        if (admin != null && admin.booleanValue()) {
+                                            if (admin != null && admin.booleanValue()) {
                                         %>
                                         <a href="Delete?type=answer&id=<%=answerId%>" class="smBtn pull-right" style="margin-top: -4em; margin-right: 10px; background: #a94442;">Delete</a>
                                         <%
@@ -206,46 +205,7 @@
                     </div>
                 </div>
 
-                <!-- Bootstrap core JavaScript
-                ================================================== -->
-                <!-- Placed at the end of the document so the pages load faster -->
-                <div class="modal fade" id="contact" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form class="form-horizontal" role="form">
-                                <div class="modal-header">
-                                    <h4>Contact<h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="contact-name" class="col-sm-2 control-label">Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="contact-name" placeholder="First & Last Name">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="contact-email" class="col-sm-2 control-label">Email</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="contact-message" class="col-sm-2 control-label">Message</label>
-                                                    <div class="col-sm-10">
-                                                        <textarea class="form-control" rows="4"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a class="btn btn-default" data-dismiss="modal">Close</a>
-                                                <button type="submit" class="btn btn-primary">Send</button>
-                                            </div>
-                                            </form>
-                                            </div>
-                                            </div>
-                                            </div>
-
-                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-                                            </body>
-                                            </html>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                </body>
+                </html>

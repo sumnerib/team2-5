@@ -69,13 +69,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.jsp">Home</a></li>       
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                            </ul>
-                        </li>            
+                        <li><a href="index.jsp">Home</a></li> 
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

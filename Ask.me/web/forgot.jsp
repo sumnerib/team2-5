@@ -39,13 +39,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.jsp">Home</a></li>       
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                            </ul>
-                        </li>            
+                        <li><a href="index.jsp">Home</a></li>          
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -58,13 +52,13 @@
                 <legend><strong>Forgot Password? </strong></legend>
                 <div>${errorMessage}</div>
                 <span class="help-block">In order to update your password. You need to fill out this form.</span>
-                
+
                 <form action="forgot" method="POST" class="login-form" data-toggle="validator" role="form">
                     <input name="type" value="checkQA" type="hidden"></input>
-                        
-                <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
 
-                <label>Your Security Question</label>
+                    <input type="text" id="username" name="username" value="" placeholder="Your Username" required/>
+
+                    <label>Your Security Question</label>
                     <div class="row">
                         <div style="margin-left: 16px; margin-right: 16px">
                             <select id="secQuestion" name="secQuestion" class="form-control input-lg">
@@ -97,46 +91,7 @@
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <div class="modal fade" id="contact" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form class="form-horizontal" role="form">
-                        <div class="modal-header">
-                            <h4>Contact<h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="contact-name" class="col-sm-2 control-label">Name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="contact-name" placeholder="First & Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="contact-email" class="col-sm-2 control-label">Email</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="contact-email" placeholder="example@domain.com">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="contact-message" class="col-sm-2 control-label">Message</label>
-                                            <div class="col-sm-10">
-                                                <textarea class="form-control" rows="4"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn btn-default" data-dismiss="modal">Close</a>
-                                        <button type="submit" class="btn btn-primary">Send</button>
-                                    </div>
-                                    </form>
-                                    </div>
-                                    </div>
-                                    </div>
-
-                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-                                    </body>
-                                    </html>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -47,13 +47,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="index.jsp">Home</a></li>       
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#contact" data-toggle="modal">Contact</a></li>
-                            </ul>
-                        </li>            
+                        <li><a href="index.jsp">Home</a></li>            
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -74,14 +68,14 @@
                         <div class="row">
                             <p class="message">
                             <div class="pull-left"><p class="message">Not registered? <a href="register.jsp">Create an account</a>
+                                </p>
+                            </div>
+
+                            <div class="pull-right"><p class="message">Forgot password? <a href="forgot.jsp">Reset password</a></p>
+                            </div>
                             </p>
                         </div>
-                            
-                        <div class="pull-right"><p class="message">Forgot password? <a href="forgot.jsp">Reset password</a></p>
-                        </div>
-                        </p>
-                        </div>
-                        </form>
+                    </form>
                 </div>
             </div>
             <!-- Profile WRAPPER END -->

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import static servlet.Feed.LOG;
 
 /**
@@ -54,6 +55,7 @@ public class Edit extends HttpServlet {
         HashMap<String, String> map = new HashMap();
 
         db = new DBQueryBean();
+        HttpSession session = request.getSession();
 
         newUsername = request.getParameter("newUsername");
         newPassword = db.hashPassword(request.getParameter("newPassword"));
@@ -87,7 +89,7 @@ public class Edit extends HttpServlet {
             request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                     + "  <strongYes!</strong> Your new changes have been updated."
                     + "</div>");
-            //db.editMember(map, "sumnerib");
+            session.setAttribute("userid", newUsername);
         } catch (SQLException sql) {
             request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"
                     + "  <strong>No!</strong> Something wrong went."
