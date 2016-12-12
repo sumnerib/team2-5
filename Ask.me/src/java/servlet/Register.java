@@ -118,7 +118,7 @@ public class Register extends HttpServlet {
         String insert = "INSERT INTO members VALUES ('" + mid + "', '" + firstname+ " " + lastname + "', '0', '" +
                 username + "', '"+ dob +"', '" + gender + "', NULL, '" + password + "', '" +
                 email +"', '"+ secQuestion +"', '"+secAnswer +"');";
-        db.addMember(mid,firstname+" "+lastname, username, dob, gender, "a", password, email, secQuestion, secAnswer);
+        db.addMember(mid,firstname+" "+lastname, username, dob, gender, password, email, secQuestion, secAnswer);
         db.closeCon();
     }
 

@@ -66,6 +66,17 @@ public class Edit extends HttpServlet {
         newGender = request.getParameter("newGender");
         newPhoto = request.getParameter("newPhoto");
         
+        if (newPhoto != null) {
+            if (newPhoto.endsWith(".png") || newPhoto.endsWith(".jpeg") 
+                    || newPhoto.endsWith(".jpg") || newPhoto.endsWith(".gif")) {
+                
+                request.setAttribute("topBar", "<div class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  <strong>No!</strong> Invalid image URL."
+                    + "</div>");
+                forwardTo("/profile.jsp", request, response);
+            }
+        }
+            
         map.put("username", newUsername);
         map.put("pass", newPassword);
         map.put("name", newName);
