@@ -44,15 +44,16 @@ public class ErrorHandler extends HttpServlet {
             String uriTemp = (String) request.getAttribute("javax.servlet.error.request_uri");
             name = uriTemp.substring(uriTemp.indexOf(getServletContext().getContextPath()) + getServletContext().getContextPath().length() + 1);
 
-            String query = "SELECT * FROM members WHERE username = '" + name + "'";
+            //String query = "SELECT * FROM members WHERE username = '" + name + "'";
             DBQueryBean db = new DBQueryBean();
-            ResultSet resultSet = db.doQuery(query);
-            if (resultSet.next()) {
+            //ResultSet resultSet = db.doQuery(query);
+            if (db.checkForUser(name)) {
                 session.setAttribute("memberProfile", name);
+                db.closeCon();
                 forwardTo("/member.jsp", request, response);
             } else {
                 db.closeCon();
-                response.sendRedirect("/team25-Ask.me/error.jsp");
+                response.sendRedirect(request.getContextPath() + "/error.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
