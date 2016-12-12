@@ -108,13 +108,14 @@
                                             String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                             ResultSet member = db.doQuery(memQuery);
                                             member.next();
+                                            String image = "";
                                             String username = member.getString("username");
-                                            String image = member.getString("image");
-                                            if (!image.endsWith(".jpeg") && !image.endsWith(".jpg") && !image.endsWith(".png")) {
+                                            if (member.getString("image") == null) {
                                                 image = "http://placehold.it/350x150";
-                                            } else if (member.wasNull()) {
-                                                image = "http://placehold.it/350x150";
+                                            } else {
+                                                image = member.getString("image");
                                             }
+                                            
                                     %>
 
 
