@@ -49,10 +49,7 @@
             gender = resultSet.getString("gender");
             email = resultSet.getString("email");
             memberId = resultSet.getInt("memberId");
-            String image = resultSet.getString("image");
-            if (resultSet.wasNull()) {
-                image = "http://placehold.it/350x150";
-            }
+            image = resultSet.getString("image");
         }
         db.closeCon();
     %>

@@ -98,7 +98,7 @@
                                 <ul class="media-list">
                                     <%@ page import="java.sql.*" %>
                                     <%
-                                        String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 5";
+                                        String query = "SELECT questionId, question, memberId FROM questions ORDER BY questionId DESC limit 10";
                                         DBQueryBean db = new DBQueryBean();
                                         ResultSet resultSet = db.doQuery(query);
                                         while (resultSet.next()) {
@@ -108,13 +108,8 @@
                                             String memQuery = "SELECT username, image FROM members WHERE memberId = " + memberId;
                                             ResultSet member = db.doQuery(memQuery);
                                             member.next();
-                                            String image = "";
                                             String username = member.getString("username");
-                                            if (member.getString("image") == null) {
-                                                image = "http://placehold.it/350x150";
-                                            } else {
-                                                image = member.getString("image");
-                                            }    
+                                            String image = member.getString("image");
                                     %>
 
 

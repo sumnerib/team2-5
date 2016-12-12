@@ -51,12 +51,7 @@
         String picQuery = "SELECT image FROM members WHERE username = '" + request.getAttribute("asker") + "'";
         ResultSet memPic = db.doQuery(picQuery);
         if (memPic.next()) {
-            if (memPic.getString("image") != null) {
-                askerImage = memPic.getString("image");
-            }
-            if (!askerImage.endsWith(".jpeg") && !askerImage.endsWith(".jpg") && !askerImage.endsWith(".png")) {
-                askerImage = "http://placehold.it/350x150";
-            }
+            askerImage = memPic.getString("image");
         }
         db.closeCon();
     %>
