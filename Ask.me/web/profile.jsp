@@ -56,6 +56,7 @@
                 image = "http://placehold.it/350x150";
             }
         }
+        db.closeCon();
     %>
     <body>
         <!-- Fixed navbar -->
@@ -203,6 +204,7 @@
 
                                                 <%
                                                     }
+                                                    db.closeCon();
                                                 %>
 
                                             </ul>
@@ -243,6 +245,7 @@
 
                                                 <%
                                                     }
+                                                    db.closeCon();
                                                 %>
 
                                             </ul>

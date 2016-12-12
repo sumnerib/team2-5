@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.DBQueryBean;
 import javax.servlet.http.HttpSession;
+import java.sql.*;
 
 /**
  *
@@ -52,6 +53,12 @@ public class Delete extends HttpServlet {
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Done!</strong> Question #" + id + " has been deleted."
                         + "</div>");
+                try {
+                    db.closeCon();
+                }
+                catch (SQLException sql) {
+                    sql.printStackTrace();
+                }
                 forwardTo("/feed.jsp", request, response);
             } break;
             case "answer": {
@@ -65,6 +72,14 @@ public class Delete extends HttpServlet {
                 request.setAttribute("topBar", "<div class=\"alert alert-success\" role=\"alert\">\n"
                         + "  <strong>Done!</strong> Answer #"+id+" has been deleted."
                         + "</div>");
+                
+                try {
+                    ddb.closeCon();
+                }
+                catch (SQLException sql) {
+                    sql.printStackTrace();
+                }
+                
                 forwardTo("/answer?questionId="+questionId, request, response);
             } break;
         }
