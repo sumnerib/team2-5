@@ -57,7 +57,7 @@ public class ErrorHandler extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("/team25-Ask.me/error.jsp");
+            response.sendRedirect(request.getContextPath()+"/error.jsp");
         }
     }
 
